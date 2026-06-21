@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile - StudentVerseAI</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='28' font-size='28'>🎓</text></svg>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+
+<div class="container fade-in">
+  <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Dashboard</a>
+
+  <!-- ====== PROFILE HEADER ====== -->
+  <div class="profile-banner" id="profileBanner">
+    <div class="cover-wrapper" id="coverWrapper" title="Click to upload cover photo">
+      <div class="cover-upload-overlay"><i class="fas fa-camera"></i> Change Cover</div>
+      <div class="cover-placeholder" id="coverPlaceholder">
+        <i class="fas fa-image"></i>
+        <span>Cover Photo</span>
+      </div>
+      <img id="coverImage" class="cover-image" style="display:none" alt="Cover" />
+    </div>
+    <div class="profile-header-info">
+      <div class="profile-avatar-wrapper" id="avatarWrapper" title="Click to upload profile photo">
+        <div class="avatar-upload-overlay"><i class="fas fa-camera"></i></div>
+        <div class="avatar-placeholder" id="avatarPlaceholder">
+          <span id="avatarLetter">?</span>
+        </div>
+        <img id="avatarImage" class="profile-avatar" style="display:none" alt="Profile" />
+      </div>
+      <input type="file" id="headerPhotoInput" accept="image/jpeg,image/png,image/webp" hidden />
+      <input type="file" id="headerCoverInput" accept="image/jpeg,image/png,image/webp" hidden />
+      <div class="profile-name-section">
+        <h1 id="profileName">Student</h1>
+        <div class="student-badge"><i class="fas fa-graduation-cap"></i> Active Student</div>
+        <div class="profile-meta">
+          <span><i class="fas fa-university"></i> <span id="profileUni">University</span></span>
+          <span><i class="fas fa-book"></i> <span id="profileDept">Department</span></span>
+          <span><i class="fas fa-layer-group"></i> <span id="profileSem">Semester</span></span>
+        </div>
+        <div class="completion-mini">
+          <div class="completion-mini-bar">
+            <div class="completion-mini-fill" id="completionMiniFill"></div>
+          </div>
+          <span class="completion-mini-text" id="completionMiniText">0%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====== PROFILE BODY ====== -->
+  <div class="profile-body">
+    <aside class="profile-sidebar" id="profileSidebar">
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-item active" data-section="overview"><i class="fas fa-th-large"></i> Overview</a>
+        <div class="nav-label">Profile Setup</div>
+        <a href="#" class="nav-item" data-section="basic-info"><i class="fas fa-user"></i> Basic Information</a>
+        <a href="#" class="nav-item" data-section="profile-photo"><i class="fas fa-camera"></i> Profile Photo</a>
+        <a href="#" class="nav-item" data-section="cover-photo"><i class="fas fa-image"></i> Cover Photo</a>
+        <a href="#" class="nav-item" data-section="bio"><i class="fas fa-quote-left"></i> About / Bio</a>
+        <a href="#" class="nav-item" data-section="academic"><i class="fas fa-graduation-cap"></i> Qualifications</a>
+        <a href="#" class="nav-item" data-section="skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#" class="nav-item" data-section="resume"><i class="fas fa-file-alt"></i> Resume</a>
+        <a href="#" class="nav-item" data-section="social-links"><i class="fas fa-link"></i> Social Links</a>
+        <div class="nav-label">Portfolio</div>
+        <a href="#" class="nav-item" data-section="projects"><i class="fas fa-folder-open"></i> Projects</a>
+        <a href="#" class="nav-item" data-section="certifications"><i class="fas fa-certificate"></i> Certifications</a>
+        <a href="#" class="nav-item" data-section="experience"><i class="fas fa-briefcase"></i> Experience</a>
+        <a href="#" class="nav-item" data-section="achievements"><i class="fas fa-trophy"></i> Achievements</a>
+        <div class="nav-label">Settings</div>
+        <a href="#" class="nav-item" data-section="privacy"><i class="fas fa-shield-alt"></i> Privacy</a>
+      </nav>
+    </aside>
+
+    <main class="profile-content" id="profileContent">
+
+      <!-- ===== OVERVIEW ===== -->
+      <div id="section-overview" class="section-content active">
+        <div class="card">
+          <h2><i class="fas fa-chart-pie"></i> Profile Completion</h2>
+          <p class="card-desc">Complete your profile to reach 100%</p>
+          <div class="completion-main">
+            <div class="completion-main-bar">
+              <div class="completion-main-fill" id="completionMainFill"></div>
+            </div>
+            <span class="completion-main-text" id="completionMainText">0% Complete</span>
+          </div>
+          <div class="completion-items" id="completionItems"></div>
+        </div>
+
+        <div class="card">
+          <h2><i class="fas fa-user"></i> About</h2>
+          <p class="card-desc" id="overviewBioPreview">Add a short introduction about yourself.</p>
+          <div class="quick-stats" id="quickStats"></div>
+        </div>
+      </div>
+
+      <!-- ===== BASIC INFO ===== -->
+      <div id="section-basic-info" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-user"></i> Basic Information</h2>
+          <p class="card-desc">Your core account details</p>
+          <form id="formBasicInfo" class="section-form">
+            <div class="form-group">
+              <label>Full Name</label>
+              <input type="text" id="basicName" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" id="basicEmail" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label>University</label>
+              <input type="text" id="basicUni" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Department</label>
+              <input type="text" id="basicDept" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label>Semester</label>
+              <select id="basicSem" class="form-input">
+                <option value="">Select semester</option>
+                <option value="1">1st Semester</option>
+                <option value="2">2nd Semester</option>
+                <option value="3">3rd Semester</option>
+                <option value="4">4th Semester</option>
+                <option value="5">5th Semester</option>
+                <option value="6">6th Semester</option>
+                <option value="7">7th Semester</option>
+                <option value="8">8th Semester</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Changes</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== PROFILE PHOTO ===== -->
+      <div id="section-profile-photo" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-camera"></i> Profile Photo</h2>
+          <p class="card-desc">Upload a profile photo (JPG, PNG, WEBP)</p>
+          <div class="upload-area">
+            <div class="upload-preview photo-preview" id="photoPreview">
+              <div class="upload-placeholder"><i class="fas fa-user"></i><span>No Photo</span></div>
+            </div>
+            <div class="upload-actions">
+              <button id="btnUploadPhoto" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Photo</button>
+              <button id="btnRemovePhoto" class="btn btn-outline" style="display:none"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== COVER PHOTO ===== -->
+      <div id="section-cover-photo" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-image"></i> Cover Photo</h2>
+          <p class="card-desc">Upload a cover photo (JPG, PNG, WEBP)</p>
+          <div class="upload-area">
+            <div class="upload-preview cover-preview" id="coverPreview">
+              <div class="upload-placeholder"><i class="fas fa-image"></i><span>No Cover Image</span></div>
+            </div>
+            <div class="upload-actions">
+              <button id="btnUploadCover" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Cover</button>
+              <button id="btnRemoveCover" class="btn btn-outline" style="display:none"><i class="fas fa-trash"></i> Remove</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== BIO ===== -->
+      <div id="section-bio" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-quote-left"></i> About / Bio</h2>
+          <p class="card-desc">Add a short introduction about yourself.</p>
+          <form id="formBio" class="section-form">
+            <div class="form-group">
+              <label><i class="fas fa-user"></i> Bio</label>
+              <textarea id="bioText" class="form-input form-textarea" rows="3" placeholder="Tell us about yourself..."></textarea>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-heart"></i> Academic Interests</label>
+              <textarea id="bioInterests" class="form-input form-textarea" rows="2" placeholder="Your academic interests..."></textarea>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-bullseye"></i> Career Goals</label>
+              <textarea id="bioCareer" class="form-input form-textarea" rows="2" placeholder="Your career goals..."></textarea>
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-info-circle"></i> Personal Introduction</label>
+              <textarea id="bioIntro" class="form-input form-textarea" rows="3" placeholder="A brief personal introduction..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Bio</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== QUALIFICATIONS ===== -->
+      <div id="section-academic" class="section-content">
+        <div class="card">
+          <div class="section-header-row">
+            <div>
+              <h2><i class="fas fa-graduation-cap"></i> Qualifications</h2>
+              <p class="card-desc">Add your School, College, and University details</p>
+            </div>
+            <button id="btnAddQual" class="btn btn-primary"><i class="fas fa-plus"></i> Add Qualification</button>
+          </div>
+          <div id="qualsList" class="items-grid"></div>
+          <div id="qualsEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-graduation-cap"></i></div>
+            <h3>No Qualifications Added Yet</h3>
+            <p>Add your School, College, or University details to build your academic profile.</p>
+            <button class="btn btn-primary btn-add-first" data-section="qualifications"><i class="fas fa-plus"></i> Add Your First Qualification</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SKILLS ===== -->
+      <div id="section-skills" class="section-content">
+        <div class="card">
+          <div class="section-header-row">
+            <div>
+              <h2><i class="fas fa-code"></i> Skills</h2>
+              <p class="card-desc">Add your skills and competencies</p>
+            </div>
+            <button id="btnAddSkill" class="btn btn-primary"><i class="fas fa-plus"></i> Add Skill</button>
+          </div>
+          <div id="skillsList" class="skills-list"></div>
+          <div id="skillsEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-code"></i></div>
+            <h3>No Skills Added Yet</h3>
+            <p>Start building your skill set by adding your first skill.</p>
+            <button class="btn btn-primary btn-add-first" data-section="skills"><i class="fas fa-plus"></i> Add Your First Skill</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== RESUME ===== -->
+      <div id="section-resume" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-file-alt"></i> Resume</h2>
+          <p class="card-desc">Upload your resume (PDF, DOCX)</p>
+          <div id="resumeEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-file-alt"></i></div>
+            <h3>No Resume Uploaded Yet</h3>
+            <p>Upload your resume to showcase your qualifications.</p>
+            <input type="file" id="resumeInput" accept=".pdf,.docx" hidden />
+            <button id="btnUploadResume" class="btn btn-primary"><i class="fas fa-upload"></i> Upload Resume</button>
+          </div>
+          <div id="resumeInfo" class="file-info" style="display:none">
+            <div class="file-info-card">
+              <div class="file-info-icon"><i class="fas fa-file-alt"></i></div>
+              <div class="file-info-details">
+                <strong id="resumeName">resume.pdf</strong>
+                <small>Uploaded resume</small>
+              </div>
+              <div class="file-info-actions">
+                <button id="btnViewResume" class="btn btn-sm btn-outline"><i class="fas fa-eye"></i> View</button>
+                <button id="btnReplaceResume" class="btn btn-sm btn-primary"><i class="fas fa-sync"></i> Replace</button>
+                <button id="btnDeleteResume" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== SOCIAL LINKS ===== -->
+      <div id="section-social-links" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-link"></i> Social Links</h2>
+          <p class="card-desc">Connect your social profiles (all optional)</p>
+          <form id="formSocial" class="section-form">
+            <div class="form-group">
+              <label><i class="fab fa-linkedin" style="color:var(--primary);"></i> LinkedIn</label>
+              <input type="url" id="socialLinkedin" class="form-input" placeholder="https://linkedin.com/in/your-profile" />
+            </div>
+            <div class="form-group">
+              <label><i class="fab fa-github"></i> GitHub</label>
+              <input type="url" id="socialGithub" class="form-input" placeholder="https://github.com/your-username" />
+            </div>
+            <div class="form-group">
+              <label><i class="fas fa-globe" style="color:var(--primary);"></i> Portfolio Website</label>
+              <input type="url" id="socialPortfolio" class="form-input" placeholder="https://your-portfolio.com" />
+            </div>
+            <div class="form-group">
+              <label><i class="fab fa-behance" style="color:#1769ff;"></i> Behance</label>
+              <input type="url" id="socialBehance" class="form-input" placeholder="https://behance.net/your-profile" />
+            </div>
+            <div class="form-group">
+              <label><i class="fab fa-dribbble" style="color:#ea4c89;"></i> Dribbble</label>
+              <input type="url" id="socialDribbble" class="form-input" placeholder="https://dribbble.com/your-username" />
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Social Links</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- ===== PROJECTS ===== -->
+      <div id="section-projects" class="section-content">
+        <div class="card">
+          <div class="section-header-row">
+            <div>
+              <h2><i class="fas fa-folder-open"></i> Projects</h2>
+              <p class="card-desc">Showcase your work</p>
+            </div>
+            <button id="btnAddProject" class="btn btn-primary"><i class="fas fa-plus"></i> Add Project</button>
+          </div>
+          <div id="projectsList" class="items-grid"></div>
+          <div id="projectsEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-folder-open"></i></div>
+            <h3>No Projects Added Yet</h3>
+            <p>Add your projects to showcase your work and skills.</p>
+            <button class="btn btn-primary btn-add-first" data-section="projects"><i class="fas fa-plus"></i> Add Your First Project</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== CERTIFICATIONS ===== -->
+      <div id="section-certifications" class="section-content">
+        <div class="card">
+          <div class="section-header-row">
+            <div>
+              <h2><i class="fas fa-certificate"></i> Certifications</h2>
+              <p class="card-desc">Upload your certificates</p>
+            </div>
+            <button id="btnAddCert" class="btn btn-primary"><i class="fas fa-plus"></i> Add Certification</button>
+          </div>
+          <div id="certsList" class="items-grid"></div>
+          <div id="certsEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-certificate"></i></div>
+            <h3>No Certifications Added Yet</h3>
+            <p>Add your certifications to highlight your achievements.</p>
+            <button class="btn btn-primary btn-add-first" data-section="certifications"><i class="fas fa-plus"></i> Add Your First Certification</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== EXPERIENCE ===== -->
+      <div id="section-experience" class="section-content">
+        <div class="card">
+          <div class="section-header-row">
+            <div>
+              <h2><i class="fas fa-briefcase"></i> Experience</h2>
+              <p class="card-desc">Your professional journey</p>
+            </div>
+            <button id="btnAddExp" class="btn btn-primary"><i class="fas fa-plus"></i> Add Experience</button>
+          </div>
+          <div id="expList" class="items-grid"></div>
+          <div id="expEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-briefcase"></i></div>
+            <h3>No Experience Added Yet</h3>
+            <p>Add your internships, jobs, volunteer work, or freelance experience.</p>
+            <button class="btn btn-primary btn-add-first" data-section="experience"><i class="fas fa-plus"></i> Add Your First Experience</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== ACHIEVEMENTS ===== -->
+      <div id="section-achievements" class="section-content">
+        <div class="card">
+          <div class="section-header-row">
+            <div>
+              <h2><i class="fas fa-trophy"></i> Achievements</h2>
+              <p class="card-desc">Your accomplishments</p>
+            </div>
+            <button id="btnAddAchievement" class="btn btn-primary"><i class="fas fa-plus"></i> Add Achievement</button>
+          </div>
+          <div id="achievementsList" class="items-grid"></div>
+          <div id="achievementsEmpty" class="empty-state">
+            <div class="empty-icon"><i class="fas fa-trophy"></i></div>
+            <h3>No Achievements Added Yet</h3>
+            <p>Highlight your accomplishments and awards.</p>
+            <button class="btn btn-primary btn-add-first" data-section="achievements"><i class="fas fa-plus"></i> Add Your First Achievement</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== PRIVACY ===== -->
+      <div id="section-privacy" class="section-content">
+        <div class="card">
+          <h2><i class="fas fa-shield-alt"></i> Privacy Controls</h2>
+          <p class="card-desc">Control who can see your profile</p>
+          <form id="formPrivacy" class="section-form">
+            <div class="radio-group">
+              <label class="radio-label">
+                <input type="radio" name="privacy" value="public" checked />
+                <div>
+                  <strong>Public</strong>
+                  <small>Anyone can view your profile</small>
+                </div>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="privacy" value="students" />
+                <div>
+                  <strong>Students Only</strong>
+                  <small>Only registered students can view</small>
+                </div>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="privacy" value="connections" />
+                <div>
+                  <strong>Connections Only</strong>
+                  <small>Only your connections can view</small>
+                </div>
+              </label>
+              <label class="radio-label">
+                <input type="radio" name="privacy" value="private" />
+                <div>
+                  <strong>Private</strong>
+                  <small>Only you can view your profile</small>
+                </div>
+              </label>
+            </div>
+            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save Privacy Settings</button>
+          </form>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ===== MODALS ===== -->
+<div class="modal-overlay" id="qualModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="qualModalTitle">Add Qualification</h3>
+      <button class="modal-close" data-modal="qualModal">&times;</button>
+    </div>
+    <form id="formQual" class="modal-form">
+      <input type="hidden" id="qualEditId" />
+      <div class="form-group">
+        <label>Type <span class="required">*</span></label>
+        <select id="qualType" class="form-input">
+          <option value="School">School</option>
+          <option value="College">College</option>
+          <option value="University">University</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Institution Name <span class="required">*</span></label>
+        <input type="text" id="qualName" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label>Department / Field of Study</label>
+        <input type="text" id="qualDept" class="form-input" placeholder="e.g. Science, Computer Science" />
+      </div>
+      <div class="form-group">
+        <label>Semester (if applicable)</label>
+        <select id="qualSem" class="form-input">
+          <option value="">Not applicable</option>
+          <option value="1">1st Semester</option>
+          <option value="2">2nd Semester</option>
+          <option value="3">3rd Semester</option>
+          <option value="4">4th Semester</option>
+          <option value="5">5th Semester</option>
+          <option value="6">6th Semester</option>
+          <option value="7">7th Semester</option>
+          <option value="8">8th Semester</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Degree / Certificate</label>
+        <input type="text" id="qualDegree" class="form-input" placeholder="e.g. Matric, Intermediate, B.Sc." />
+      </div>
+      <div class="form-group">
+        <label>Year of Completion / Expected Graduation</label>
+        <input type="text" id="qualGrad" class="form-input" placeholder="e.g. 2028" />
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" id="qualLocation" class="form-input" placeholder="City, Country" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" data-modal="qualModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Qualification</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="projectModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="projectModalTitle">Add Project</h3>
+      <button class="modal-close" data-modal="projectModal">&times;</button>
+    </div>
+    <form id="formProject" class="modal-form">
+      <input type="hidden" id="projectEditId" />
+      <div class="form-group">
+        <label>Project Name <span class="required">*</span></label>
+        <input type="text" id="projectName" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="projectDesc" class="form-input form-textarea" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Technologies Used</label>
+        <input type="text" id="projectTech" class="form-input" placeholder="e.g. React, Node.js, Python" />
+      </div>
+      <div class="form-group">
+        <label>Project Image</label>
+        <input type="file" id="projectImage" accept="image/jpeg,image/png,image/webp" />
+      </div>
+      <div class="form-group">
+        <label>GitHub Link</label>
+        <input type="url" id="projectGithub" class="form-input" placeholder="https://github.com/..." />
+      </div>
+      <div class="form-group">
+        <label>Live Demo Link</label>
+        <input type="url" id="projectDemo" class="form-input" placeholder="https://..." />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" data-modal="projectModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Project</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="certModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="certModalTitle">Add Certification</h3>
+      <button class="modal-close" data-modal="certModal">&times;</button>
+    </div>
+    <form id="formCert" class="modal-form">
+      <input type="hidden" id="certEditId" />
+      <div class="form-group">
+        <label>Certificate Title <span class="required">*</span></label>
+        <input type="text" id="certTitle" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label>Organization</label>
+        <input type="text" id="certOrg" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label>Issue Date</label>
+        <input type="date" id="certDate" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label>Certificate File (PDF, DOCX, Image)</label>
+        <input type="file" id="certFile" accept=".pdf,.docx,image/jpeg,image/png,image/webp" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" data-modal="certModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Certification</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="expModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="expModalTitle">Add Experience</h3>
+      <button class="modal-close" data-modal="expModal">&times;</button>
+    </div>
+    <form id="formExp" class="modal-form">
+      <input type="hidden" id="expEditId" />
+      <div class="form-group">
+        <label>Title / Position <span class="required">*</span></label>
+        <input type="text" id="expTitle" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label>Organization</label>
+        <input type="text" id="expOrg" class="form-input" />
+      </div>
+      <div class="form-group">
+        <label>Type</label>
+        <select id="expType" class="form-input">
+          <option value="internship">Internship</option>
+          <option value="volunteer">Volunteer Work</option>
+          <option value="part-time">Part-Time Job</option>
+          <option value="freelance">Freelance</option>
+          <option value="research">Research Work</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Start Date</label>
+          <input type="date" id="expStart" class="form-input" />
+        </div>
+        <div class="form-group">
+          <label>End Date</label>
+          <input type="date" id="expEnd" class="form-input" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox" id="expCurrent" /> I currently work here
+        </label>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="expDesc" class="form-input form-textarea" rows="3"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" data-modal="expModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Experience</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="modal-overlay" id="achievementModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="achModalTitle">Add Achievement</h3>
+      <button class="modal-close" data-modal="achievementModal">&times;</button>
+    </div>
+    <form id="formAchievement" class="modal-form">
+      <input type="hidden" id="achEditId" />
+      <div class="form-group">
+        <label>Title <span class="required">*</span></label>
+        <input type="text" id="achTitle" class="form-input" required />
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="achDesc" class="form-input form-textarea" rows="3"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Date</label>
+        <input type="date" id="achDate" class="form-input" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-outline" data-modal="achievementModal">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save Achievement</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Timetable - StudentVerseAI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/timetable.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+  <div class="container fade-in" id="timetableContainer">
+
+    <a href="dashboard.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+
+    <div class="hero-section">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 id="courseTitle">My Weekly Schedule</h1>
+          <p id="courseSubtitle">Plan your classes and study blocks</p>
+        </div>
+        <div class="course-badge" id="courseBadge">
+          <i class="fas fa-graduation-cap"></i>
+          <span id="badgeCourseName">Loading...</span>
+        </div>
+        <div class="hero-actions">
+          <button class="hero-btn hero-btn-primary" id="downloadTimetableBtn">
+            <i class="fas fa-download"></i> Download
+          </button>
+          <button class="hero-btn hero-btn-ghost" id="openAddModal">
+            <i class="fas fa-plus"></i> Add Class
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <header class="top-header">
+      <div class="header-actions">
+        <button class="btn btn-outline" id="toggleViewBtn"><i class="far fa-calendar-alt"></i> Weekly View</button>
+        <button class="btn btn-outline" id="openBlockModal"><i class="fas fa-clock"></i> Add Study Block</button>
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="Toggle Theme"><i class="fas fa-sun" id="themeIcon"></i></button>
+      </div>
+    </header>
+
+    <div class="main-layout">
+
+      <div class="timetable-section" id="timetableSection">
+        <p class="hint-text"><i class="fas fa-info-circle"></i> Click a day header to view only that day.</p>
+        <div class="table-responsive">
+          <table id="scheduleTable">
+            <thead id="tableHead"></thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="widget upcoming-widget">
+          <div class="widget-header">
+            <h3><i class="fas fa-bell" style="color:var(--primary)"></i> Next Class</h3>
+          </div>
+          <div class="upcoming-card" id="upcomingCard">
+            <div id="nextClassContent">
+              <p style="color:var(--text-muted);font-size:0.9rem;">No classes scheduled yet.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="widget">
+          <div class="widget-header">
+            <h3><i class="fas fa-book-reader" style="color:var(--accent2)"></i> Study Blocks</h3>
+          </div>
+          <div id="studyBlocksList">
+            <p style="color:var(--text-muted);font-size:0.9rem;padding:10px 0;">No study blocks yet.</p>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="scheduleModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-calendar-plus"></i> Add Class</h2>
+        <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="scheduleForm">
+        <div class="input-group">
+          <label><i class="fas fa-book"></i> Subject</label>
+          <select id="subName" required>
+            <option value="" disabled selected>Select your enrolled course</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label><i class="fas fa-user-tie"></i> Instructor</label>
+            <input type="text" id="teacherName" placeholder="Instructor name" required>
+          </div>
+          <div class="input-group">
+            <label><i class="fas fa-map-marker-alt"></i> Room</label>
+            <input type="text" id="roomNum" placeholder="e.g. Lab 1" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label><i class="fas fa-calendar-day"></i> Day</label>
+            <select id="classDay" required>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label><i class="far fa-clock"></i> Time Slot</label>
+            <select id="timeSlot" required>
+              <option value="08:00-09:00">08:00 AM - 09:00 AM</option>
+              <option value="09:00-10:00">09:00 AM - 10:00 AM</option>
+              <option value="10:00-11:00">10:00 AM - 11:00 AM</option>
+              <option value="11:00-12:00">11:00 AM - 12:00 PM</option>
+              <option value="12:00-01:00">12:00 PM - 01:00 PM</option>
+              <option value="01:00-02:00">01:00 PM - 02:00 PM</option>
+              <option value="02:00-03:00">02:00 PM - 03:00 PM</option>
+              <option value="03:00-04:00">03:00 PM - 04:00 PM</option>
+              <option value="04:00-05:00">04:00 PM - 05:00 PM</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary full-width" style="margin-top:22px;">
+          <i class="fas fa-save"></i> Save Class
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="blockModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2><i class="fas fa-clock"></i> Add Study Block</h2>
+        <button class="close-modal" id="closeBlockModal"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="blockForm">
+        <div class="input-group">
+          <label><i class="fas fa-tasks"></i> Task / Topic</label>
+          <input type="text" id="blockTitle" placeholder="e.g. DSA Practice" required>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label><i class="fas fa-calendar-day"></i> Day</label>
+            <select id="blockDay" required>
+              <option value="Monday">Monday</option>
+              <option value="Tuesday">Tuesday</option>
+              <option value="Wednesday">Wednesday</option>
+              <option value="Thursday">Thursday</option>
+              <option value="Friday">Friday</option>
+              <option value="Saturday">Saturday</option>
+              <option value="Sunday">Sunday</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label><i class="far fa-clock"></i> Time</label>
+            <input type="text" id="blockTime" placeholder="e.g. 02:00 PM - 04:00 PM" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary full-width" style="margin-top:22px;">
+          <i class="fas fa-plus"></i> Add Block
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Action Successful!</div>
+
+  <script src="js/timetable.js"></script>
+</body>
+</html>

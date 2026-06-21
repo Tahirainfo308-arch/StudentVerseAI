@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - StudentVerseAI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+
+<div class="container fade-in">
+
+  <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+
+  <h1 class="page-title">Settings</h1>
+  <p class="page-subtitle">Customize your StudentVerseAI experience</p>
+
+  <div class="settings-layout">
+
+    <aside class="settings-sidebar">
+      <nav class="settings-nav">
+        <a href="#account" class="active"><i class="fas fa-user"></i> Account</a>
+        <a href="#appearance"><i class="fas fa-palette"></i> Appearance</a>
+        <a href="#notifications"><i class="fas fa-bell"></i> Notifications</a>
+        <a href="#privacy"><i class="fas fa-shield-alt"></i> Privacy & Security</a>
+        <a href="#academic"><i class="fas fa-graduation-cap"></i> Academic</a>
+        <a href="#language"><i class="fas fa-globe"></i> Language & Region</a>
+        <a href="#accessibility"><i class="fas fa-universal-access"></i> Accessibility</a>
+        <a href="#productivity"><i class="fas fa-clock"></i> Productivity</a>
+        <a href="#ai"><i class="fas fa-robot"></i> AI Assistant</a>
+        <a href="#data"><i class="fas fa-database"></i> Data & Storage</a>
+        <a href="#gamification"><i class="fas fa-trophy"></i> Rewards</a>
+        <a href="#connected"><i class="fas fa-link"></i> Connected Accounts</a>
+        <a href="#help"><i class="fas fa-question-circle"></i> Help & Support</a>
+        <a href="#advanced"><i class="fas fa-cog"></i> Advanced</a>
+        <a href="#about"><i class="fas fa-info-circle"></i> About</a>
+      </nav>
+    </aside>
+
+    <main class="settings-content">
+
+      <!-- Student Success Center -->
+      <div class="success-card" id="successCard">
+        <h2><i class="fas fa-trophy"></i> Student Success Center</h2>
+        <div class="success-grid">
+          <div class="success-item"><div class="s-number" id="sGpa">3.85</div><div class="s-label">Current GPA</div><div class="s-progress"><div class="s-fill" style="width:96%"></div></div></div>
+          <div class="success-item"><div class="s-number" id="sGoalProgress">78%</div><div class="s-label">GPA Goal Progress</div><div class="s-progress"><div class="s-fill" style="width:78%"></div></div></div>
+          <div class="success-item"><div class="s-number" id="sStudyHours">14</div><div class="s-label">Weekly Study Hrs</div><div class="s-progress"><div class="s-fill" style="width:70%"></div></div></div>
+          <div class="success-item"><div class="s-number" id="sAssignRate">83%</div><div class="s-label">Assignment Rate</div><div class="s-progress"><div class="s-fill" style="width:83%"></div></div></div>
+          <div class="success-item"><div class="s-number" id="sQuizRate">88%</div><div class="s-label">Quiz Success Rate</div><div class="s-progress"><div class="s-fill" style="width:88%"></div></div></div>
+          <div class="success-item"><div class="s-number" id="sStreak">7</div><div class="s-label">Day Streak</div><div class="s-progress"><div class="s-fill" style="width:70%"></div></div></div>
+        </div>
+      </div>
+
+      <!-- 1. Account -->
+      <section class="settings-section active" id="section-account">
+        <div class="section-card">
+          <h2>Account Settings</h2>
+          <p class="section-desc">Manage your personal information and profile.</p>
+
+          <div class="avatar-upload">
+            <img src="img.png" alt="Avatar" class="avatar" id="profileAvatar">
+            <div>
+              <button class="avatar-btn" id="changeAvatarBtn"><i class="fas fa-camera"></i> Change Photo</button>
+              <p style="font-size:0.75rem;color:var(--text-muted);margin-top:4px;">JPG, PNG or GIF. Max 2MB.</p>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group"><label>Full Name</label><input type="text" id="sFullName" placeholder="John Doe"></div>
+            <div class="form-group"><label>Username</label><input type="text" id="sUsername" placeholder="johndoe"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Student ID</label><input type="text" id="sStudentId" placeholder="STU-2023-0042" readonly></div>
+            <div class="form-group"><label>Email Address</label><input type="email" id="sEmail" placeholder="student@university.edu"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone Number</label><input type="tel" id="sPhone" placeholder="+1 234 567 890"></div>
+            <div class="form-group"><label>University Name</label><input type="text" id="sUniversity" placeholder="University of Technology"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Department</label><input type="text" id="sDepartment" placeholder="Computer Science"></div>
+            <div class="form-group"><label>Semester</label><select id="sSemester"><option>Semester 1</option><option>Semester 2</option><option>Semester 3</option><option>Semester 4</option><option selected>Semester 5</option><option>Semester 6</option><option>Semester 7</option><option>Semester 8</option></select></div>
+          </div>
+          <div class="form-group"><label>Bio / About Me</label><textarea id="sBio" placeholder="Write a short bio about yourself..."></textarea></div>
+
+          <div class="form-actions">
+            <button class="btn btn-primary" id="saveAccountBtn"><i class="fas fa-save"></i> Save Changes</button>
+            <button class="btn btn-danger" id="deleteAccountBtn"><i class="fas fa-trash"></i> Delete Account</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Appearance -->
+      <section class="settings-section" id="section-appearance">
+        <div class="section-card">
+          <h2>Theme</h2>
+          <p class="section-desc">Choose your preferred theme.</p>
+          <div class="theme-options">
+            <button class="theme-option active" data-theme="light"><i class="fas fa-sun"></i> Light</button>
+            <button class="theme-option" data-theme="dark"><i class="fas fa-moon"></i> Dark</button>
+            <button class="theme-option" data-theme="system"><i class="fas fa-desktop"></i> System</button>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Color Presets</h2>
+          <p class="section-desc">Choose your accent color scheme.</p>
+          <div class="color-presets">
+            <div><div class="color-preset active" data-preset="default" style="background:linear-gradient(135deg,#0A66C2,#057642);" title="LinkedIn Blue-Green"></div><span class="color-preset-label">Default</span></div>
+            <div><div class="color-preset" data-preset="ocean" style="background:linear-gradient(135deg,#0ea5e9,#06b6d4);" title="Ocean Blue"></div><span class="color-preset-label">Ocean</span></div>
+            <div><div class="color-preset" data-preset="emerald" style="background:linear-gradient(135deg,#10b981,#059669);" title="Emerald Green"></div><span class="color-preset-label">Emerald</span></div>
+            <div><div class="color-preset" data-preset="purple" style="background:linear-gradient(135deg,#8b5cf6,#a855f7);" title="Purple Gradient"></div><span class="color-preset-label">Purple</span></div>
+            <div><div class="color-preset" data-preset="sunset" style="background:linear-gradient(135deg,#f97316,#ef4444);" title="Sunset Orange"></div><span class="color-preset-label">Sunset</span></div>
+            <div><div class="color-preset" data-preset="midnight" style="background:linear-gradient(135deg,#1e293b,#334155);" title="Midnight"></div><span class="color-preset-label">Midnight</span></div>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <h2>Layout Preferences</h2>
+          <p class="section-desc">Customize the UI layout and behavior.</p>
+          <div class="setting-row"><div class="info"><h4>Font Size</h4><p>Adjust text size across the platform</p></div><select id="fontSizeSelect" style="padding:8px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);font-family:'Poppins',sans-serif;outline:none;"><option value="small">Small</option><option value="medium" selected>Medium</option><option value="large">Large</option></select></div>
+          <div class="setting-row"><div class="info"><h4>Compact Mode</h4><p>Reduce spacing for a denser layout</p></div><div class="toggle" id="compactToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Animations</h4><p>Enable or disable UI animations</p></div><div class="toggle active" id="animToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Sidebar Auto-Collapse</h4><p>Automatically collapse sidebar on small screens</p></div><div class="toggle active" id="sidebarCollapseToggle"><span class="knob"></span></div></div>
+
+          <p style="font-size:0.85rem;font-weight:600;margin:18px 0 8px;color:var(--text);">Live Preview</p>
+          <div class="preview-box" id="livePreview">
+            <div class="p-header"><div class="p-avatar"></div><div class="p-lines"><div></div><div></div></div></div>
+            <div class="p-card"></div>
+            <div class="p-card" style="width:70%;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. Notifications -->
+      <section class="settings-section" id="section-notifications">
+        <div class="section-card">
+          <h2>Notification Preferences</h2>
+          <p class="section-desc">Control what notifications you receive.</p>
+          <div class="setting-row"><div class="info"><h4>Assignment Reminders</h4><p>Get notified about upcoming deadlines</p></div><div class="toggle active" data-notif="assignments"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Quiz Notifications</h4><p>Alerts for scheduled quizzes</p></div><div class="toggle active" data-notif="quizzes"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Course Updates</h4><p>Changes and updates to your courses</p></div><div class="toggle active" data-notif="courses"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>New Notes Alerts</h4><p>When new notes are shared in your courses</p></div><div class="toggle active" data-notif="notes"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Group Messages</h4><p>Messages from your study groups</p></div><div class="toggle active" data-notif="groups"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Discussion Replies</h4><p>Replies to your forum posts</p></div><div class="toggle" data-notif="discussions"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>GPA Reports</h4><p>Periodic GPA updates</p></div><div class="toggle active" data-notif="gpa"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Achievement Alerts</h4><p>When you earn badges or achievements</p></div><div class="toggle active" data-notif="achievements"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>AI Recommendations</h4><p>Personalized AI study suggestions</p></div><div class="toggle active" data-notif="ai"><span class="knob"></span></div></div>
+        </div>
+
+        <div class="section-card">
+          <h2>Notification Channels</h2>
+          <p class="section-desc">Choose how you receive notifications.</p>
+          <div class="setting-row"><div class="info"><h4>In-App Notifications</h4><p>Notifications within the platform</p></div><div class="toggle active"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Email Notifications</h4><p>Receive updates via email</p></div><div class="toggle active"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Push Notifications</h4><p>Browser push notifications</p></div><div class="toggle"><span class="knob"></span></div></div>
+        </div>
+
+        <div class="section-card">
+          <h2>Notification Frequency</h2>
+          <p class="section-desc">How often you want to receive notifications.</p>
+          <div class="freq-options">
+            <button class="freq-btn active" data-freq="instant">Instant</button>
+            <button class="freq-btn" data-freq="daily">Daily Digest</button>
+            <button class="freq-btn" data-freq="weekly">Weekly Summary</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Privacy & Security -->
+      <section class="settings-section" id="section-privacy">
+        <div class="section-card">
+          <h2>Security</h2>
+          <p class="section-desc">Manage your account security settings.</p>
+          <div class="security-item"><div class="sec-info"><h4>Change Password</h4><p>Update your account password</p></div><button class="btn btn-secondary btn-sm" id="changePassBtn"><i class="fas fa-key"></i> Change</button></div>
+          <div class="security-item"><div class="sec-info"><h4>Two-Factor Authentication</h4><p>Add an extra layer of security</p></div><div class="toggle" id="twoFactorToggle"><span class="knob"></span></div></div>
+          <div class="security-item"><div class="sec-info"><h4>Login Activity</h4><p>View recent login history</p></div><button class="btn btn-secondary btn-sm"><i class="fas fa-history"></i> View</button></div>
+          <div class="security-item"><div class="sec-info"><h4>Active Devices</h4><p>Devices currently logged in</p></div><button class="btn btn-secondary btn-sm"><i class="fas fa-laptop"></i> View</button></div>
+          <div class="security-item"><div class="sec-info"><h4>Logout All Devices</h4><p>Sign out from all active sessions</p></div><button class="btn btn-danger btn-sm"><i class="fas fa-sign-out-alt"></i> Logout All</button></div>
+        </div>
+
+        <div class="section-card">
+          <h2>Privacy Controls</h2>
+          <p class="section-desc">Control your visibility across the platform.</p>
+          <div class="setting-row"><div class="info"><h4>Profile Visibility</h4></div><div class="vis-options"><button class="vis-btn" data-vis="public">Public</button><button class="vis-btn active" data-vis="friends">Friends Only</button><button class="vis-btn" data-vis="private">Private</button></div></div>
+          <div class="setting-row"><div class="info"><h4>Notes Visibility</h4></div><div class="vis-options"><button class="vis-btn active" data-vis="public">Public</button><button class="vis-btn" data-vis="friends">Friends Only</button><button class="vis-btn" data-vis="private">Private</button></div></div>
+          <div class="setting-row"><div class="info"><h4>Study Group Visibility</h4></div><div class="vis-options"><button class="vis-btn active" data-vis="public">Public</button><button class="vis-btn" data-vis="friends">Friends Only</button><button class="vis-btn" data-vis="private">Private</button></div></div>
+          <div class="setting-row"><div class="info"><h4>Academic Statistics</h4></div><div class="vis-options"><button class="vis-btn" data-vis="public">Public</button><button class="vis-btn active" data-vis="friends">Friends Only</button><button class="vis-btn" data-vis="private">Private</button></div></div>
+        </div>
+      </section>
+
+      <!-- 5. Academic -->
+      <section class="settings-section" id="section-academic">
+        <div class="section-card">
+          <h2>Academic Preferences</h2>
+          <p class="section-desc">Personalize your learning experience.</p>
+          <div class="form-row">
+            <div class="form-group"><label>Preferred Subjects</label><input type="text" id="prefSubjects" placeholder="e.g. Computer Science, Mathematics"></div>
+            <div class="form-group"><label>Learning Style</label><select id="learningStyle"><option>Visual</option><option selected>Reading/Writing</option><option>Auditory</option><option>Kinesthetic</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Semester Goals</label><input type="text" id="semGoals" placeholder="e.g. Achieve Dean's List"></div>
+            <div class="form-group"><label>Weekly Study Goal (hours)</label><input type="number" id="weeklyStudyGoal" value="20" min="1" max="80"></div>
+          </div>
+          <div class="form-group"><label>GPA Target</label><input type="number" id="gpaTarget" value="3.7" min="0" max="4" step="0.1"></div>
+          <div class="form-actions"><button class="btn btn-primary" id="saveAcademicBtn"><i class="fas fa-save"></i> Save Goals</button></div>
+        </div>
+      </section>
+
+      <!-- 6. Language & Region -->
+      <section class="settings-section" id="section-language">
+        <div class="section-card">
+          <h2>Language & Region</h2>
+          <p class="section-desc">Choose your language and regional preferences.</p>
+          <div class="form-row">
+            <div class="form-group"><label>Language</label><select id="langSelect"><option value="en">English</option><option value="ur">Urdu</option><option value="ar">Arabic</option><option value="fr">French</option><option value="es">Spanish</option></select></div>
+            <div class="form-group"><label>Time Zone</label><select id="timezoneSelect"><option value="UTC">UTC (Universal)</option><option value="EST">EST (Eastern)</option><option value="PST">PST (Pacific)</option><option value="GMT">GMT (London)</option><option value="IST">IST (India)</option><option value="PKT" selected>PKT (Pakistan)</option></select></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Date Format</label><select id="dateFormat"><option value="MM/DD/YYYY">MM/DD/YYYY</option><option value="DD/MM/YYYY" selected>DD/MM/YYYY</option><option value="YYYY-MM-DD">YYYY-MM-DD</option></select></div>
+            <div class="form-group"><label>Time Format</label><select id="timeFormat"><option value="12h">12-hour</option><option value="24h" selected>24-hour</option></select></div>
+          </div>
+          <div class="form-actions"><button class="btn btn-primary" id="saveLangBtn"><i class="fas fa-save"></i> Save Preferences</button></div>
+        </div>
+      </section>
+
+      <!-- 7. Accessibility -->
+      <section class="settings-section" id="section-accessibility">
+        <div class="section-card">
+          <h2>Accessibility</h2>
+          <p class="section-desc">Settings for better usability.</p>
+          <div class="setting-row"><div class="info"><h4>High Contrast Mode</h4><p>Increase contrast for better readability</p></div><div class="toggle" id="highContrastToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Dyslexia Friendly Font</h4><p>Use a font designed for dyslexic readers</p></div><div class="toggle" id="dyslexiaToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Reduced Motion</h4><p>Minimize animations and motion</p></div><div class="toggle" id="reducedMotionToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Large Text Mode</h4><p>Increase default text size</p></div><div class="toggle" id="largeTextToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Keyboard Navigation</h4><p>Enhanced keyboard navigation support</p></div><div class="toggle active" id="keyboardNavToggle"><span class="knob"></span></div></div>
+        </div>
+      </section>
+
+      <!-- 8. Productivity -->
+      <section class="settings-section" id="section-productivity">
+        <div class="section-card">
+          <h2>Study Productivity</h2>
+          <p class="section-desc">Customize your study tools and Pomodoro timer.</p>
+          <div class="form-row">
+            <div class="form-group"><label>Default Pomodoro (minutes)</label><input type="number" id="pomodoroDuration" value="25" min="5" max="60"></div>
+            <div class="form-group"><label>Break Duration (minutes)</label><input type="number" id="breakDuration" value="5" min="1" max="30"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Daily Study Target (hours)</label><input type="number" id="dailyTarget" value="4" min="1" max="16"></div>
+            <div class="form-group"><label>Weekly Study Goal (hours)</label><input type="number" id="weeklyProductivityGoal" value="20" min="1" max="80"></div>
+          </div>
+          <div class="setting-row"><div class="info"><h4>Auto-Start Timer</h4><p>Automatically start focus sessions</p></div><div class="toggle active" id="autoStartToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Auto-Start Break</h4><p>Automatically start break after focus</p></div><div class="toggle" id="autoBreakToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Focus Music</h4><p>Play background focus music</p></div><div class="toggle" id="focusMusicToggle"><span class="knob"></span></div></div>
+          <div class="form-actions"><button class="btn btn-primary" id="saveProductivityBtn"><i class="fas fa-save"></i> Save Settings</button></div>
+        </div>
+      </section>
+
+      <!-- 9. AI Assistant -->
+      <section class="settings-section" id="section-ai">
+        <div class="section-card">
+          <h2>AI Assistant Settings</h2>
+          <p class="section-desc">Control how your AI study assistant behaves.</p>
+          <div class="form-group"><label>AI Response Style</label><div class="ai-personality"><button class="personality-btn" data-style="friendly">Friendly</button><button class="personality-btn active" data-style="professional">Professional</button><button class="personality-btn" data-style="motivational">Motivational</button><button class="personality-btn" data-style="concise">Concise</button></div></div>
+          <div class="setting-row"><div class="info"><h4>Study Suggestions</h4></div><div class="toggle active" data-ai="suggestions"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>GPA Insights</h4></div><div class="toggle active" data-ai="gpa"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Assignment Recommendations</h4></div><div class="toggle active" data-ai="assignments"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Exam Preparation Tips</h4></div><div class="toggle active" data-ai="exams"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Personalized Learning Plans</h4></div><div class="toggle" data-ai="plans"><span class="knob"></span></div></div>
+          <div class="form-actions"><button class="btn btn-primary" id="saveAiBtn"><i class="fas fa-save"></i> Save AI Settings</button></div>
+        </div>
+      </section>
+
+      <!-- 10. Data & Storage -->
+      <section class="settings-section" id="section-data">
+        <div class="section-card">
+          <h2>Data & Storage</h2>
+          <p class="section-desc">Manage your data and storage usage.</p>
+          <div style="display:flex;justify-content:space-between;font-size:0.85rem;margin-bottom:4px;"><span>Storage Used</span><span id="storageUsed">245 MB / 1 GB</span></div>
+          <div class="storage-bar"><div class="fill" id="storageFill" style="width:24%;"></div></div>
+          <div class="storage-stats">
+            <div class="stat-box"><h3 id="notesCount">12</h3><p>Notes Uploaded</p></div>
+            <div class="stat-box"><h3 id="resourcesCount">8</h3><p>Resources Shared</p></div>
+            <div class="stat-box"><h3 id="downloadsCount">45</h3><p>Total Downloads</p></div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-secondary btn-sm"><i class="fas fa-download"></i> Download Data</button>
+            <button class="btn btn-secondary btn-sm"><i class="fas fa-file-export"></i> Export Profile</button>
+            <button class="btn btn-primary btn-sm"><i class="fas fa-database"></i> Backup Data</button>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm">PDF</button>
+            <button class="btn btn-outline btn-sm">CSV</button>
+            <button class="btn btn-outline btn-sm active" style="background:var(--primary);color:white;border-color:var(--primary);">JSON</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11. Gamification -->
+      <section class="settings-section" id="section-gamification">
+        <div class="section-card">
+          <h2>Rewards & Gamification</h2>
+          <p class="section-desc">Control your engagement and achievement features.</p>
+          <div class="setting-row"><div class="info"><h4>Learning Streak</h4><p>Show your daily study streak</p></div><div class="toggle active" id="streakToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Achievement Notifications</h4><p>Get notified when earning badges</p></div><div class="toggle active" id="achieveToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Leaderboard Participation</h4><p>Compete on the academic leaderboard</p></div><div class="toggle active" id="leaderboardToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Contribution Points</h4><p>Display your contribution points</p></div><div class="toggle active" id="pointsToggle"><span class="knob"></span></div></div>
+          <div class="storage-stats" style="margin-top:16px;">
+            <div class="stat-box"><h3>Level 7</h3><p>Current Level</p></div>
+            <div class="stat-box"><h3>12</h3><p>Badges Earned</p></div>
+            <div class="stat-box"><h3>2,450</h3><p>Total Points</p></div>
+            <div class="stat-box"><h3>7</h3><p>Day Streak</p></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12. Connected Accounts -->
+      <section class="settings-section" id="section-connected">
+        <div class="section-card">
+          <h2>Connected Accounts</h2>
+          <p class="section-desc">Manage your connected accounts and integrations.</p>
+          <div class="connected-account"><div class="ca-icon" style="background:rgba(234,67,53,0.1);color:#ea4335;"><i class="fab fa-google"></i></div><div class="ca-info"><h4>Google Account</h4><p>Not connected</p></div><button class="btn btn-primary btn-sm"><i class="fas fa-link"></i> Connect</button></div>
+          <div class="connected-account"><div class="ca-icon" style="background:rgba(0,120,212,0.1);color:#0078d4;"><i class="fab fa-microsoft"></i></div><div class="ca-info"><h4>Microsoft Account</h4><p>Not connected</p></div><button class="btn btn-primary btn-sm"><i class="fas fa-link"></i> Connect</button></div>
+          <div class="connected-account"><div class="ca-icon" style="background:rgba(36,41,46,0.1);color:#24292e;"><i class="fab fa-github"></i></div><div class="ca-info"><h4>GitHub Account</h4><p>Connected as johndoe</p></div><button class="btn btn-danger btn-sm"><i class="fas fa-unlink"></i> Disconnect</button></div>
+          <div class="connected-account"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fab fa-linkedin"></i></div><div class="ca-info"><h4>LinkedIn Profile</h4><p>Not connected</p></div><button class="btn btn-primary btn-sm"><i class="fas fa-link"></i> Connect</button></div>
+        </div>
+      </section>
+
+      <!-- 13. Help & Support -->
+      <section class="settings-section" id="section-help">
+        <div class="section-card">
+          <h2>Help & Support</h2>
+          <p class="section-desc">Get help when you need it.</p>
+          <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-question-circle"></i></div><div class="ca-info"><h4>Help Center</h4><p>Browse documentation and guides</p></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+          <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-comments"></i></div><div class="ca-info"><h4>FAQs</h4><p>Frequently asked questions</p></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+          <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-envelope"></i></div><div class="ca-info"><h4>Contact Support</h4><p>Reach out to our support team</p></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+          <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(239,68,68,0.1);color:var(--danger);"><i class="fas fa-bug"></i></div><div class="ca-info"><h4>Report a Bug</h4><p>Help us improve the platform</p></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+          <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(34,197,94,0.1);color:var(--success);"><i class="fas fa-lightbulb"></i></div><div class="ca-info"><h4>Feature Request</h4><p>Suggest new features</p></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+          <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-users"></i></div><div class="ca-info"><h4>Community Forum</h4><p>Join discussions with other students</p></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+        </div>
+      </section>
+
+      <!-- 14. Advanced -->
+      <section class="settings-section" id="section-advanced">
+        <div class="section-card">
+          <h2>Advanced Settings</h2>
+          <p class="section-desc">Power user settings and tools.</p>
+          <div class="security-item"><div class="sec-info"><h4>Clear Cache</h4><p>Clear locally cached data</p></div><button class="btn btn-secondary btn-sm" id="clearCacheBtn"><i class="fas fa-trash"></i> Clear</button></div>
+          <div class="security-item"><div class="sec-info"><h4>Reset Preferences</h4><p>Reset all settings to default</p></div><button class="btn btn-danger btn-sm" id="resetPrefsBtn"><i class="fas fa-undo"></i> Reset</button></div>
+          <div class="security-item"><div class="sec-info"><h4>Reset Dashboard Layout</h4><p>Restore default dashboard layout</p></div><button class="btn btn-secondary btn-sm"><i class="fas fa-th"></i> Reset</button></div>
+          <div class="setting-row"><div class="info"><h4>Experimental Features</h4><p>Enable experimental features (may be unstable)</p></div><div class="toggle" id="experimentalToggle"><span class="knob"></span></div></div>
+          <div class="setting-row"><div class="info"><h4>Developer Mode</h4><p>Enable developer tools and debugging</p></div><div class="toggle" id="devModeToggle"><span class="knob"></span></div></div>
+        </div>
+      </section>
+
+      <!-- 15. About -->
+      <section class="settings-section" id="section-about">
+        <div class="section-card">
+          <h2>About StudentVerseAI</h2>
+          <p class="section-desc">Version information and legal details.</p>
+          <div class="storage-stats" style="grid-template-columns:repeat(auto-fit,minmax(180px,1fr));">
+            <div class="stat-box"><h3>v2.4.1</h3><p>App Version</p></div>
+            <div class="stat-box"><h3>#2026.06</h3><p>Build Number</p></div>
+          </div>
+          <div style="margin-top:16px;">
+            <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-file-alt"></i></div><div class="ca-info"><h4>Terms of Service</h4></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+            <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-shield-alt"></i></div><div class="ca-info"><h4>Privacy Policy</h4></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+            <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-code"></i></div><div class="ca-info"><h4>Open Source Libraries</h4></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+            <div class="connected-account" style="cursor:pointer;"><div class="ca-icon" style="background:rgba(10,102,194,0.1);color:var(--primary);"><i class="fas fa-users"></i></div><div class="ca-info"><h4>Team StudentVerseAI</h4></div><i class="fas fa-chevron-right" style="color:var(--text-muted);"></i></div>
+          </div>
+          <p style="text-align:center;color:var(--text-muted);font-size:0.82rem;margin-top:20px;">&copy; 2026 StudentVerseAI. All rights reserved.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script src="js/settings.js"></script>
+</body>
+</html>

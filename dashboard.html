@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudentVerseAI Dashboard">
+  <title>Dashboard - StudentVerseAI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body class="dashboard-body">
+
+<div class="dashboard-layout">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-logo">StudentVerseAI</span>
+      <button class="collapse-btn" id="collapseBtn" aria-label="Toggle sidebar">&#9776;</button>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Main</div>
+      <a href="#" class="active" data-page="dashboard-home">
+        <span class="nav-icon"><i class="fas fa-tachometer-alt"></i></span>
+        <span class="nav-text">Dashboard</span>
+      </a>
+      <a href="#" data-page="my-courses">
+        <span class="nav-icon"><i class="fas fa-book"></i></span>
+        <span class="nav-text">My Courses</span>
+      </a>
+      <a href="#" data-page="assignments">
+        <span class="nav-icon"><i class="fas fa-tasks"></i></span>
+        <span class="nav-text">Assignments</span>
+        <span class="nav-badge" id="assignNavBadge" style="display:none;">0</span>
+      </a>
+      <a href="#" data-page="quizzes">
+        <span class="nav-icon"><i class="fas fa-question-circle"></i></span>
+        <span class="nav-text">Quizzes</span>
+      </a>
+      <a href="notes.html">
+        <span class="nav-icon"><i class="fas fa-sticky-note"></i></span>
+        <span class="nav-text">Notes Library</span>
+      </a>
+      <a href="#" data-page="course-groups">
+        <span class="nav-icon"><i class="fas fa-users"></i></span>
+        <span class="nav-text">Course Groups</span>
+        <span class="nav-badge" id="groupBadge">!</span>
+      </a>
+      <a href="#" data-page="gpa">
+        <span class="nav-icon"><i class="fas fa-calculator"></i></span>
+        <span class="nav-text">CGPA Calculator</span>
+      </a>
+
+      <div class="nav-section">AI &amp; Tools</div>
+      <a href="#" data-page="ai-assistant">
+        <span class="nav-icon"><i class="fas fa-robot"></i></span>
+        <span class="nav-text">AI Assistant</span>
+      </a>
+      <a href="#" data-page="pomodoro">
+        <span class="nav-icon"><i class="fas fa-clock"></i></span>
+        <span class="nav-text">Focus Timer</span>
+      </a>
+      <a href="#" data-page="leaderboard">
+        <span class="nav-icon"><i class="fas fa-trophy"></i></span>
+        <span class="nav-text">Leaderboard</span>
+      </a>
+
+      <div class="nav-section">Planning</div>
+      <a href="timetable.html">
+        <span class="nav-icon"><i class="fas fa-calendar-alt"></i></span>
+        <span class="nav-text">Timetable</span>
+      </a>
+      <a href="#" data-page="calendar">
+        <span class="nav-icon"><i class="fas fa-calendar"></i></span>
+        <span class="nav-text">Calendar</span>
+      </a>
+      <a href="#" data-page="notifications">
+        <span class="nav-icon"><i class="fas fa-bell"></i></span>
+        <span class="nav-text">Notifications</span>
+        <span class="nav-badge" id="notifBadge" style="display:none;">0</span>
+      </a>
+
+      <div class="nav-section">Account</div>
+      <a href="profile.html">
+        <span class="nav-icon"><i class="fas fa-user"></i></span>
+        <span class="nav-text">Profile</span>
+      </a>
+      <a href="settings.html">
+        <span class="nav-icon"><i class="fas fa-cog"></i></span>
+        <span class="nav-text">Settings</span>
+      </a>
+      <a href="index.html" id="logoutBtn">
+        <span class="nav-icon"><i class="fas fa-sign-out-alt"></i></span>
+        <span class="nav-text">Logout</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="main-content">
+    <header class="dashboard-topbar">
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">&#9776;</button>
+      <div class="topbar-search">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" placeholder="Search courses, notes, assignments..." id="globalSearch">
+      </div>
+      <div class="topbar-actions">
+        <button class="topbar-btn" aria-label="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="theme-toggle topbar-btn" id="dashThemeToggle" aria-label="Toggle theme" style="width:38px;height:38px;border-radius:50%;border:2px solid var(--border);background:var(--card);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text-muted);font-size:1rem;"><i class="fas fa-adjust"></i></button>
+        <div class="topbar-user">
+          <div id="topbarAvatar" style="width:36px;height:36px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:0.9rem;cursor:pointer;">S</div>
+          <div class="user-info">
+            <div class="name" id="userName">Alex Student</div>
+            <div class="role" id="userRole">Computer Science</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="dashboard-content">
+
+      <!-- Dashboard Home -->
+      <div class="page-section active" id="page-dashboard-home">
+        <div class="welcome-section">
+          <div class="welcome-content">
+            <h1>Welcome back, <span id="welcomeName">John</span> 👋</h1>
+            <p>Track your courses, assignments, and academic progress all in one place.</p>
+            <div class="welcome-actions">
+              <button class="btn btn-primary" onclick="showPage('assignments')">
+                <i class="fas fa-plus"></i> New Assignment
+              </button>
+              <button class="btn btn-outline" onclick="showPage('my-courses')">
+                <i class="fas fa-book"></i> Browse Courses
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="stats-cards">
+          <div class="stat-card">
+            <div class="stat-card-icon" style="background:rgba(15,118,110,0.1);color:var(--primary);">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-label">Current GPA</div>
+              <div class="stat-number" id="currentGpa">—</div>
+              <div class="stat-trend up"><i class="fas fa-arrow-up"></i> +0.2 this sem</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon" style="background:rgba(15,118,110,0.1);color:var(--primary);">
+              <i class="fas fa-book"></i>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-label">Active Courses</div>
+              <div class="stat-number" id="activeCourses">0</div>
+              <div class="stat-trend up"><i class="fas fa-arrow-up"></i> +2 this sem</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon" style="background:rgba(239,68,68,0.1);color:#EF4444;">
+              <i class="fas fa-tasks"></i>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-label">Pending Assignments</div>
+              <div class="stat-number" id="pendingAssignments">0</div>
+              <div class="stat-trend down"><i class="fas fa-arrow-down"></i> -2 this week</div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-icon" style="background:rgba(245,158,11,0.1);color:#F59E0B;">
+              <i class="fas fa-question-circle"></i>
+            </div>
+            <div class="stat-card-content">
+              <div class="stat-label">Upcoming Quizzes</div>
+              <div class="stat-number" id="upcomingQuizzes">—</div>
+              <div class="stat-trend"><i class="fas fa-minus"></i> No change</div>
+            </div>
+          </div>
+        </div>
+        <div class="quick-actions" id="quickActions">
+          <div class="quick-action-card" data-page="notes.html" tabindex="0" role="button" aria-label="Quick Note - Create and manage notes">
+            <div class="qa-icon"><i class="fas fa-sticky-note"></i></div>
+            <div class="qa-text">
+              <span class="qa-title">Quick Note</span>
+              <span class="qa-desc">Create, edit and manage notes</span>
+            </div>
+          </div>
+          <div class="quick-action-card" data-page="quizzes" tabindex="0" role="button" aria-label="Take Quiz - Browse and start quizzes">
+            <div class="qa-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="qa-text">
+              <span class="qa-title">Take Quiz</span>
+              <span class="qa-desc">Browse courses and test yourself</span>
+            </div>
+          </div>
+          <div class="quick-action-card" data-page="gpa" tabindex="0" role="button" aria-label="Calculate GPA - Compute your GPA">
+            <div class="qa-icon"><i class="fas fa-calculator"></i></div>
+            <div class="qa-text">
+              <span class="qa-title">Calculate GPA</span>
+              <span class="qa-desc">Add subjects and calculate CGPA</span>
+            </div>
+          </div>
+          <div class="quick-action-card" data-page="timetable.html" tabindex="0" role="button" aria-label="View Schedule - Check your timetable">
+            <div class="qa-icon"><i class="fas fa-calendar-alt"></i></div>
+            <div class="qa-text">
+              <span class="qa-title">View Schedule</span>
+              <span class="qa-desc">Timetable, deadlines and exams</span>
+            </div>
+          </div>
+        </div>
+        <div class="charts-grid">
+          <div class="card chart-card">
+            <h3>GPA Trend</h3>
+            <div class="chart-placeholder">
+              <canvas id="gpaChart" style="width:100%;height:100%;"></canvas>
+            </div>
+          </div>
+          <div class="card chart-card">
+            <h3>Course Progress</h3>
+            <div class="chart-placeholder">
+              <canvas id="progressChart" style="width:100%;height:100%;"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="charts-grid">
+          <div class="card chart-card">
+            <h3>Assignment Completion</h3>
+            <div class="chart-placeholder">
+              <canvas id="assignmentChart" style="width:100%;height:100%;"></canvas>
+            </div>
+          </div>
+          <div class="card chart-card">
+            <h3>Study Hours</h3>
+            <div class="chart-placeholder">
+              <canvas id="studyChart" style="width:100%;height:100%;"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Courses -->
+      <div class="page-section" id="page-my-courses">
+        <div class="page-header">
+          <h1>My Courses</h1>
+          <p>Manage and track your enrolled courses</p>
+        </div>
+        <div class="courses-toolbar">
+          <input type="text" placeholder="Search courses..." id="courseSearch">
+          <select id="courseFilter">
+            <option value="all">All Categories</option>
+            <option value="Development (Frontend)">Frontend Development</option>
+            <option value="Development (Backend)">Backend Development</option>
+            <option value="Data Science & AI">Data Science & AI</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Databases">Databases</option>
+            <option value="Systems & Networking">Systems & Networking</option>
+            <option value="Cloud & DevOps">Cloud & DevOps</option>
+            <option value="Cybersecurity">Cybersecurity</option>
+            <option value="Mobile Development">Mobile Development</option>
+          </select>
+          <button class="btn btn-primary btn-sm">+ Add Course</button>
+        </div>
+        <template id="courseCardTemplate">
+          <div class="course-card">
+            <div class="course-cover">
+              <i class="fas fa-code"></i>
+            </div>
+            <div class="course-card-body">
+              <h3></h3>
+              <div class="instructor"></div>
+              <div class="progress-bar">
+                <div class="progress-fill" style="width:0%"></div>
+              </div>
+              <div class="course-card-stats">
+                <span><i class="far fa-file-alt"></i> <span class="stat-assignments">0</span> Assignments</span>
+                <span><i class="far fa-clock"></i> <span class="stat-hours">0</span>h remaining</span>
+              </div>
+            </div>
+          </div>
+        </template>
+        <div class="courses-grid" id="coursesContainer"></div>
+      </div>
+
+      <!-- Assignments -->
+      <div class="page-section" id="page-assignments">
+        <div class="page-header">
+          <div>
+            <h1>Assignments</h1>
+            <p>Track your assignments, deadlines, and progress</p>
+          </div>
+          <button id="btnAddAssignment" class="btn btn-primary btn-sm">+ Add Assignment</button>
+        </div>
+        <div id="assignEmpty" class="assign-empty">
+          <div class="empty-icon"><i class="fas fa-tasks"></i></div>
+          <h3>No Assignments Yet</h3>
+          <p>Add your first assignment to start tracking your deadlines and progress.</p>
+          <button id="btnAddFirstAssign" class="btn btn-primary"><i class="fas fa-plus"></i> Add Your First Assignment</button>
+        </div>
+        <div id="assignTableWrap" class="card table-card">
+          <table class="assignment-table">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Course</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="assignBody"></tbody>
+          </table>
+        </div>
+        <div class="assign-stats" id="assignStats"></div>
+      </div>
+
+      <!-- Quizzes -->
+      <div class="page-section" id="page-quizzes">
+        <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h1>Quiz Center</h1>
+            <p>Practice, take quizzes, and track your performance</p>
+          </div>
+          <a href="quiz.html" class="btn btn-primary btn-sm"><i class="fas fa-external-link-alt"></i> Full Quiz Center</a>
+        </div>
+        <div class="quiz-grid" id="quizContainer">
+          <div style="grid-column:1/-1;text-align:center;padding:60px 20px;">
+            <i class="fas fa-question-circle" style="font-size:3rem;color:var(--text-muted);margin-bottom:16px;display:block;"></i>
+            <h3>No Quizzes Yet</h3>
+            <p style="color:var(--text-muted);">Quizzes will appear here once they are created.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notes Hub -->
+      <div class="page-section" id="page-notes">
+        <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h1>Notes Hub</h1>
+            <p>Upload, share, and discover study notes</p>
+          </div>
+          <button class="btn btn-primary btn-sm">+ Upload Notes</button>
+        </div>
+        <div class="courses-toolbar">
+          <input type="text" placeholder="Search notes..." id="notesSearch">
+          <select id="notesFilter">
+            <option value="all">All Subjects</option>
+            <option value="Frontend">Frontend</option>
+            <option value="Backend">Backend</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Software Eng">Software Eng</option>
+            <option value="Databases">Databases</option>
+            <option value="Networking">Networking</option>
+            <option value="Cloud">Cloud</option>
+            <option value="Security">Security</option>
+            <option value="Mobile">Mobile</option>
+          </select>
+          <select>
+            <option value="recent">Most Recent</option>
+            <option value="popular">Most Popular</option>
+            <option value="liked">Most Liked</option>
+          </select>
+        </div>
+        <div id="hubNotesContainer" style="display:flex;flex-direction:column;gap:12px;">
+          <div style="text-align:center;padding:40px;color:var(--text-muted);"><i class="fas fa-sticky-note" style="font-size:2rem;margin-bottom:8px;display:block;"></i><p>Notes shared in your course groups will appear here.</p></div>
+        </div>
+      </div>
+
+      <!-- Course Groups -->
+      <div class="page-section" id="page-course-groups">
+        <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h1>Course Groups</h1>
+            <p>Your enrolled courses — chat, share notes, and collaborate</p>
+          </div>
+        </div>
+        <div class="study-groups-grid" id="courseGroupsContainer"></div>
+      </div>
+
+      <!-- Group Detail (Chat + Notes) -->
+      <div class="page-section" id="page-group-detail">
+        <div class="page-header" style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <button class="btn btn-outline btn-sm" id="backToGroups" style="padding:6px 12px;">&larr; Back</button>
+          <div>
+            <h1 id="groupDetailTitle">Group Name</h1>
+            <p id="groupDetailMeta">Course group</p>
+          </div>
+        </div>
+        <div class="group-detail-tabs" style="display:flex;gap:8px;margin-bottom:16px;">
+          <button class="btn btn-primary btn-sm" data-gtab="chat" style="border-radius:20px;"><i class="fas fa-comment"></i> Chat</button>
+          <button class="btn btn-outline btn-sm" data-gtab="notes" style="border-radius:20px;"><i class="fas fa-file-alt"></i> Notes</button>
+          <button class="btn btn-outline btn-sm" data-gtab="members" style="border-radius:20px;"><i class="fas fa-users"></i> Members</button>
+        </div>
+        <div id="groupChatTab" class="group-tab-content">
+          <div class="card" style="padding:0;display:flex;flex-direction:column;height:450px;">
+            <div class="group-chat-messages" id="groupChatMessages" style="flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;"></div>
+            <div style="display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--border);">
+              <input type="text" id="groupChatInput" placeholder="Type a message..." style="flex:1;padding:10px 14px;border-radius:20px;border:1.5px solid var(--border);background:var(--bg);color:var(--text);outline:none;font-family:var(--font);">
+              <button id="groupChatSend" class="btn btn-primary" style="padding:10px 18px;border-radius:20px;">Send</button>
+            </div>
+          </div>
+        </div>
+        <div id="groupNotesTab" class="group-tab-content" style="display:none;">
+          <div class="card" style="padding:20px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px;">
+              <h3>Shared Notes</h3>
+              <button class="btn btn-primary btn-sm" id="btnUploadGroupNote">+ Add Note</button>
+            </div>
+            <div id="groupNotesList" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+        <div id="groupMembersTab" class="group-tab-content" style="display:none;">
+          <div class="card" style="padding:20px;">
+            <h3 style="margin-bottom:12px;">Members</h3>
+            <div id="groupMembersList" style="display:flex;flex-direction:column;gap:8px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GPA Calculator -->
+      <div class="page-section" id="page-gpa">
+        <div class="page-header">
+        <h1>CGPA Calculator</h1>
+        <p>Calculate your cumulative GPA from enrolled courses</p>
+        </div>
+        <div class="gpa-calculator">
+          <div class="card" style="padding:24px;">
+            <h3 style="margin-bottom:16px;">Add Courses</h3>
+            <div class="gpa-form-headers">
+              <span>Course Name</span>
+              <span>Credits</span>
+              <span>Total CGPA</span>
+              <span></span>
+            </div>
+            <div id="gpaCourses">
+              <div class="gpa-form-row">
+                <input type="text" placeholder="e.g. Data Structures" class="gpa-course-name">
+                <input type="number" placeholder="Credits" class="gpa-credits" min="1" max="5" value="3">
+                <select class="gpa-grade">
+                  <option value="4.0">4.00</option>
+                  <option value="3.7">3.70</option>
+                  <option value="3.3">3.30</option>
+                  <option value="3.0">3.00</option>
+                  <option value="2.7">2.70</option>
+                  <option value="2.3">2.30</option>
+                  <option value="2.0">2.00</option>
+                  <option value="1.7">1.70</option>
+                  <option value="1.3">1.30</option>
+                  <option value="1.0">1.00</option>
+                  <option value="0.0">0.00</option>
+                </select>
+                <button class="btn btn-outline btn-sm remove-gpa-row" style="padding:10px 12px;">&#10005;</button>
+              </div>
+            </div>
+            <div class="gpa-actions">
+              <button class="btn btn-primary btn-sm" id="addGpaRow">+ Add Course</button>
+              <button class="btn btn-secondary btn-sm" id="calcGpa">Calculate CGPA</button>
+              <button class="btn btn-outline btn-sm" id="resetGpa">Reset</button>
+            </div>
+          </div>
+            <div class="gpa-result" id="gpaResult">
+            <div class="gpa-number" id="gpaDisplay">0.00</div>
+            <div class="gpa-status" id="gpaStatus">Add courses to calculate Total CGPA</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Assistant -->
+      <div class="page-section" id="page-ai-assistant">
+        <div class="page-header">
+          <div>
+            <h1>AI Study Assistant</h1>
+            <p>Powered by Groq — blazing fast AI answers</p>
+          </div>
+          <select id="groq-model" class="groq-model-select">
+            <option value="llama-3.3-70b-versatile">Llama 3.3 70B</option>
+            <option value="llama3-8b-8192">Llama 3 8B</option>
+            <option value="mixtral-8x7b-32768">Mixtral 8x7B</option>
+            <option value="gemma2-9b-it">Gemma 2 9B</option>
+          </select>
+        </div>
+        <div class="card ai-assistant">
+          <div class="ai-chat-messages" id="groqMessages">
+            <div class="ai-message">
+              <div class="avatar">AI</div>
+              <div class="bubble">Hello! I'm your AI Study Assistant powered by Groq. I can help with study tips, assignments, exam prep, coding, research, and more. What would you like help with?</div>
+            </div>
+          </div>
+          <div class="groq-suggestions" id="groqSuggestions">
+            <div class="groq-suggestion" data-prompt="Explain the concept of neural networks simply">🧠 Neural Networks</div>
+            <div class="groq-suggestion" data-prompt="Give me study tips for final exams">📚 Study Tips</div>
+            <div class="groq-suggestion" data-prompt="Write a Python function to calculate CGPA">💻 CGPA Calculator</div>
+            <div class="groq-suggestion" data-prompt="Help me understand time complexity with examples">⏱️ Time Complexity</div>
+          </div>
+          <div class="groq-input-row">
+            <textarea id="groqInput" rows="1" placeholder="Ask me anything about your studies..." oninput="autoResizeGroq(this)"></textarea>
+            <button id="groqSendBtn">➤</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Focus Timer (Pomodoro) -->
+      <div class="page-section" id="page-pomodoro">
+        <div class="page-header">
+          <h1>Focus Timer</h1>
+          <p>Stay productive with the Pomodoro technique</p>
+        </div>
+        <div class="card pomodoro-timer">
+          <div class="timer-display" id="timerDisplay">25:00</div>
+          <div class="pomodoro-controls">
+            <button class="btn btn-primary" id="startTimer"><i class="fas fa-play"></i> Start</button>
+            <button class="btn btn-outline" id="pauseTimer"><i class="fas fa-pause"></i> Pause</button>
+            <button class="btn btn-outline" id="resetTimer"><i class="fas fa-redo"></i> Reset</button>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn btn-sm btn-outline" data-pomodoro="25">Focus 25m</button>
+            <button class="btn btn-sm btn-outline" data-pomodoro="5">Break 5m</button>
+            <button class="btn btn-sm btn-outline" data-pomodoro="15">Break 15m</button>
+          </div>
+          <div style="margin-top:16px;color:var(--text-muted);font-size:0.85rem;">
+            Sessions completed today: <strong id="pomodoroCount">0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="page-section" id="page-leaderboard">
+        <div class="page-header">
+          <h1>Academic Leaderboard</h1>
+          <p>Top contributors in the StudentVerseAI community</p>
+        </div>
+        <div class="card" style="padding:60px 20px;text-align:center;">
+          <i class="fas fa-trophy" style="font-size:3rem;margin-bottom:16px;display:block;color:var(--text-muted);"></i>
+          <h3>Leaderboard Coming Soon</h3>
+          <p style="color:var(--text-muted);">Points and rankings will appear here once the community grows.</p>
+        </div>
+      </div>
+
+      <!-- Calendar -->
+      <div class="page-section" id="page-calendar">
+        <div class="page-header">
+          <h1>Calendar &amp; Planner</h1>
+          <p>Manage your schedule, deadlines, and events</p>
+        </div>
+        <div class="card">
+          <div class="calendar-header">
+            <button class="calendar-nav-btn" id="prevMonth"><i class="fas fa-chevron-left"></i> Previous</button>
+            <h3 id="calendarTitle">June 2026</h3>
+            <button class="calendar-nav-btn" id="nextMonth">Next <i class="fas fa-chevron-right"></i></button>
+          </div>
+          <div class="calendar-grid" id="calendarGrid">
+            <div class="calendar-day-header">Sun</div>
+            <div class="calendar-day-header">Mon</div>
+            <div class="calendar-day-header">Tue</div>
+            <div class="calendar-day-header">Wed</div>
+            <div class="calendar-day-header">Thu</div>
+            <div class="calendar-day-header">Fri</div>
+            <div class="calendar-day-header">Sat</div>
+          </div>
+          <div class="calendar-legend">
+            <span><span class="legend-dot today-dot"></span> Today</span>
+            <span><span class="legend-dot event-dot"></span> Has Event</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="page-section" id="page-notifications">
+        <div class="page-header">
+          <h1>Notifications</h1>
+          <p>Stay updated with your academic activities</p>
+        </div>
+        <div class="notif-toolbar">
+          <div class="notif-filters">
+            <button class="notif-filter-btn active" data-filter="all">All</button>
+            <button class="notif-filter-btn" data-filter="assignments">Assignments</button>
+            <button class="notif-filter-btn" data-filter="quiz">Quizzes</button>
+            <button class="notif-filter-btn" data-filter="groups">Groups</button>
+            <button class="notif-filter-btn" data-filter="notes">Notes</button>
+            <button class="notif-filter-btn" data-filter="general">Other</button>
+          </div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <button class="btn btn-outline btn-sm" id="markAllRead"><i class="fas fa-check-double"></i> Mark All Read</button>
+            <button class="btn btn-outline btn-sm" id="clearAllNotifs" style="color:var(--danger,#ff4757);border-color:var(--danger,#ff4757);"><i class="fas fa-trash-alt"></i> Clear All</button>
+          </div>
+        </div>
+        <div class="notifications-list" id="notificationsList">
+          <div class="notif-empty-state" style="text-align:center;padding:60px 20px;">
+            <i class="fas fa-bell" style="font-size:3rem;margin-bottom:16px;display:block;color:var(--text-muted);"></i>
+            <h3>No Notifications</h3>
+            <p style="color:var(--text-muted);">Notifications about assignments, deadlines, and group activity will appear here.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile -->
+      <div class="page-section" id="page-profile">
+        <div class="page-header">
+          <h1>My Profile</h1>
+          <p>Manage your personal information and achievements</p>
+        </div>
+        <div class="card" style="padding:32px;">
+          <div class="profile-header">
+              <div style="position:relative;display:inline-block;">
+                <div id="profileAvatar" class="profile-avatar" style="width:80px;height:80px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;color:white;font-size:2rem;font-weight:700;">S</div>
+                <div class="profile-avatar-overlay"><i class="fas fa-pen"></i></div>
+              </div>
+            <div class="profile-info">
+              <h2 id="profileName">Alex Student</h2>
+          <div class="detail" id="profileDetail">Loading...</div>
+          <div class="detail" style="margin-top:4px;" id="profileStudentId">Student ID: —</div>
+          <div style="display:flex;gap:16px;margin-top:12px;flex-wrap:wrap;">
+            <span style="font-size:0.85rem;color:var(--text-muted);"><i class="fas fa-star"></i> GPA: <span id="profileGpa">—</span></span>
+            <span style="font-size:0.85rem;color:var(--text-muted);"><i class="fas fa-book"></i> <span id="profileCourseCount">0</span> Courses</span>
+            <span style="font-size:0.85rem;color:var(--text-muted);"><i class="fas fa-sticky-note"></i> <span id="profileNotesCount">0</span> Notes Shared</span>
+          </div>
+            </div>
+          </div>
+
+          <h3 style="margin-bottom:12px;">Skills</h3>
+          <div id="profileSkills" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;">
+            <span style="color:var(--text-muted);font-size:0.85rem;">No skills added yet. Update your profile.</span>
+          </div>
+
+          <h3 style="margin-bottom:12px;">Achievements &amp; Badges</h3>
+          <div class="badges-grid" id="badgesContainer">
+            <div style="grid-column:1/-1;color:var(--text-muted);font-size:0.85rem;">Earn badges by completing courses, sharing notes, and staying active.</div>
+          </div>
+
+          <h3 style="margin:24px 0 12px;">Learning Streak</h3>
+          <div class="streak-display">
+            <div class="streak-count" id="streakCount">0</div>
+            <div class="streak-label">Day Streak</div>
+            <div class="streak-days" id="streakDays">
+              <span class="streak-day">M</span>
+              <span class="streak-day">T</span>
+              <span class="streak-day">W</span>
+              <span class="streak-day">T</span>
+              <span class="streak-day">F</span>
+              <span class="streak-day">S</span>
+              <span class="streak-day">S</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings -->
+      <div class="page-section" id="page-settings">
+        <div class="page-header">
+          <h1>Settings</h1>
+          <p>Customize your StudentVerseAI experience</p>
+        </div>
+        <div class="card" style="padding:32px;">
+          <div class="settings-section">
+            <h3>Appearance</h3>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Dark Mode</h4>
+                <p>Switch between light and dark themes</p>
+              </div>
+              <div class="toggle-switch" id="darkModeToggle">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Compact Mode</h4>
+                <p>Reduce spacing for a denser layout</p>
+              </div>
+              <div class="toggle-switch">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>Notifications</h3>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Push Notifications</h4>
+                <p>Receive push notifications for deadlines and updates</p>
+              </div>
+              <div class="toggle-switch active">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Email Notifications</h4>
+                <p>Get email alerts for important updates</p>
+              </div>
+              <div class="toggle-switch active">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Quiz Reminders</h4>
+                <p>Reminders before scheduled quizzes</p>
+              </div>
+              <div class="toggle-switch active">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>Privacy</h3>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Profile Visibility</h4>
+                <p>Make your profile visible to other students</p>
+              </div>
+              <div class="toggle-switch active">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Share Activity</h4>
+                <p>Share your learning activity with study groups</p>
+              </div>
+              <div class="toggle-switch">
+                <span class="toggle-knob"></span>
+              </div>
+            </div>
+          </div>
+          <div class="settings-section">
+            <h3>Language</h3>
+            <div class="settings-row">
+              <div class="label">
+                <h4>Display Language</h4>
+                <p>Choose your preferred language</p>
+              </div>
+              <select style="padding:8px 12px;border-radius:8px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font);outline:none;">
+                <option>English</option>
+                <option>Spanish</option>
+                <option>French</option>
+                <option>German</option>
+                <option>Arabic</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="courseDetailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h3 id="detailModalTitle">Course Details</h3>
+      <button class="modal-close" id="closeCourseDetail">&times;</button>
+    </div>
+    <div class="modal-body" id="courseDetailBody">
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="assignModal">
+  <div class="modal assign-modal">
+    <div class="modal-header">
+      <h3 id="assignModalTitle"><i class="fas fa-tasks"></i> <span>Add Assignment</span></h3>
+      <button class="modal-close" data-modal="assignModal">&times;</button>
+    </div>
+    <form id="formAssign" class="modal-form">
+      <input type="hidden" id="assignEditId" />
+      <div class="assign-form-group">
+        <label><i class="fas fa-heading"></i> Assignment Title <span class="required">*</span></label>
+        <input type="text" id="assignTitle" class="form-input" placeholder="e.g. Chapter 5 Homework" required />
+      </div>
+      <div class="assign-form-group">
+        <label><i class="fas fa-book"></i> Course</label>
+        <input type="text" id="assignCourse" class="form-input" placeholder="e.g. Data Structures" />
+      </div>
+      <div class="assign-form-row">
+        <div class="assign-form-group">
+          <label><i class="far fa-calendar-alt"></i> Due Date</label>
+          <input type="date" id="assignDue" class="form-input" />
+        </div>
+        <div class="assign-form-group">
+          <label><i class="fas fa-flag"></i> Priority</label>
+          <select id="assignPriority" class="form-input">
+            <option value="low">&#128994; Low</option>
+            <option value="medium" selected>&#128993; Medium</option>
+            <option value="high">&#128308; High</option>
+          </select>
+        </div>
+      </div>
+      <div class="assign-form-footer">
+        <button type="button" class="btn btn-outline" id="btnCancelAssign"><i class="fas fa-times"></i> Cancel</button>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Save Assignment</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to StudentVerseAI">
+  <title>Login - StudentVerseAI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="auth-page">
+  <div class="auth-container">
+    <div class="auth-box">
+      <div class="auth-header">
+        <a href="index.html" class="auth-logo">
+          <span class="auth-logo-icon">S</span>
+          StudentVerseAI
+        </a>
+        <h1><i class="fas fa-graduation-cap"></i> Welcome Back</h1>
+        <p><i class="fas fa-arrow-right"></i> Sign in to continue your learning journey</p>
+      </div>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="email"><i class="fas fa-envelope"></i> Email Address</label>
+          <div class="input-wrapper">
+            <span class="input-icon"><i class="fas fa-envelope"></i></span>
+            <input type="email" id="email" placeholder="Enter your email" required>
+          </div>
+          <div class="error-text">Please enter a valid email address</div>
+        </div>
+
+        <div class="form-group">
+          <label for="password"><i class="fas fa-lock"></i> Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon"><i class="fas fa-lock"></i></span>
+            <input type="password" id="password" placeholder="Enter your password" required minlength="6">
+            <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="far fa-eye"></i></button>
+          </div>
+          <div class="error-text">Password must be at least 6 characters</div>
+        </div>
+
+        <div class="form-row">
+          <label class="remember">
+            <input type="checkbox" id="rememberMe">
+            <i class="fas fa-check-circle"></i> Remember Me
+          </label>
+          <a href="#" class="forgot-link"><i class="fas fa-question-circle"></i> Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;gap:8px;">
+          <i class="fas fa-sign-in-alt"></i> Sign In
+        </button>
+      </form>
+
+      <div class="auth-divider"><i class="fas fa-ellipsis-h"></i> or continue with <i class="fas fa-ellipsis-h"></i></div>
+
+      <button class="btn-google">
+        <i class="fab fa-google"></i>
+        Continue with Google
+      </button>
+
+      <div class="auth-footer">
+        <p>Don't have an account? <a href="register.html"><i class="fas fa-user-plus"></i> Create Account</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>

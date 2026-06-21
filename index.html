@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="StudentVerseAI - Your AI-Powered Academic Ecosystem for courses, notes, GPA tracking, quizzes, and personalized learning.">
+  <title>StudentVerseAI — AI-Powered Academic Ecosystem</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <span class="logo-icon"><i class="fas fa-graduation-cap"></i></span>
+      StudentVerseAI
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#hero" class="active">Home</a></li>
+      <li><a href="#product">Product</a></li>
+      <li><a href="#ai-assistant">AI</a></li>
+      <li><a href="#features">Features</a></li>
+      <li><a href="#achievements">Achievements</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-buttons">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+      <a href="login.html" class="btn btn-outline btn-sm">Login</a>
+      <a href="register.html" class="btn btn-primary btn-sm">Get Started Free</a>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<section class="hero" id="hero">
+  <div class="hero-bg-shapes">
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-robot"></i> Powered by Artificial Intelligence
+      </div>
+      <h1>Your <span>AI-Powered</span> Academic Ecosystem</h1>
+      <p class="hero-subtitle">One intelligent platform for courses, notes, assignments, GPA tracking, quizzes, study groups, and personalized AI guidance — designed to help you excel.</p>
+      <div class="hero-stats-row">
+        <div class="hero-stat">
+          <span class="hero-stat-num">10K+</span>
+          <span class="hero-stat-label">Active Students</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">500+</span>
+          <span class="hero-stat-label">Courses</span>
+        </div>
+        <div class="hero-stat-divider"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-num">50K+</span>
+          <span class="hero-stat-label">Shared Notes</span>
+        </div>
+      </div>
+      <div class="hero-buttons">
+        <a href="register.html" class="btn btn-primary btn-lg">Start Learning Free <i class="fas fa-arrow-right"></i></a>
+        <a href="#product" class="btn btn-secondary btn-lg">See How It Works</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src="img/heroST.png" alt="StudentVerseAI Dashboard" class="hero-dash-img">
+
+    </div>
+  </div>
+</section>
+
+<section class="section logo-cloud" id="product">
+  <div class="container">
+    <p class="logo-cloud-label">Trusted by students at</p>
+    <div class="logo-cloud-items">
+      <span><i class="fas fa-university"></i> Harvard</span>
+      <span><i class="fas fa-university"></i> Stanford</span>
+      <span><i class="fas fa-university"></i> MIT</span>
+      <span><i class="fas fa-university"></i> Oxford</span>
+      <span><i class="fas fa-university"></i> Cambridge</span>
+      <span><i class="fas fa-university"></i> NUS</span>
+    </div>
+  </div>
+</section>
+
+<section class="section product-preview">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-compass"></i> Product Overview</span>
+      <h2>Everything You Need, One Dashboard</h2>
+      <p>From enrollment to graduation — manage your entire academic journey from a single, intelligent dashboard.</p>
+    </div>
+    <div class="product-showcase">
+      <div class="product-tabs">
+        <button class="product-tab active" data-tab="overview">
+          <i class="fas fa-th-large"></i> Overview
+        </button>
+        <button class="product-tab" data-tab="courses">
+          <i class="fas fa-book"></i> Courses
+        </button>
+        <button class="product-tab" data-tab="analytics">
+          <i class="fas fa-chart-line"></i> Analytics
+        </button>
+        <button class="product-tab" data-tab="schedule">
+          <i class="fas fa-calendar"></i> Schedule
+        </button>
+      </div>
+      <div class="product-panel active" id="panel-overview">
+        <div class="panel-grid">
+          <div class="panel-card">
+            <i class="fas fa-robot panel-card-icon"></i>
+            <h4>AI Assistant</h4>
+            <p>Get instant answers, study tips, and personalized recommendations.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-tasks panel-card-icon"></i>
+            <h4>Assignment Tracker</h4>
+            <p>Never miss a deadline with smart reminders and progress tracking.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-calculator panel-card-icon"></i>
+            <h4>GPA Calculator</h4>
+            <p>Calculate semester and cumulative GPA with visual charts.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-users panel-card-icon"></i>
+            <h4>Study Groups</h4>
+            <p>Collaborate with peers in real-time group chat and file sharing.</p>
+          </div>
+        </div>
+      </div>
+      <div class="product-panel" id="panel-courses">
+        <div class="panel-grid">
+          <div class="panel-card">
+            <i class="fas fa-search panel-card-icon"></i>
+            <h4>Smart Enrollment</h4>
+            <p>AI-powered course recommendations based on your field of study.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-sticky-note panel-card-icon"></i>
+            <h4>Notes Library</h4>
+            <p>Upload, share, and discover notes from students worldwide.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-question-circle panel-card-icon"></i>
+            <h4>Quiz Center</h4>
+            <p>Practice with AI-generated quizzes and track your scores.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-clock panel-card-icon"></i>
+            <h4>Timetable</h4>
+            <p>Visual weekly schedule with class times and deadlines.</p>
+          </div>
+        </div>
+      </div>
+      <div class="product-panel" id="panel-analytics">
+        <div class="panel-grid">
+          <div class="panel-card">
+            <i class="fas fa-chart-bar panel-card-icon"></i>
+            <h4>Performance Charts</h4>
+            <p>Visual GPA trends, quiz scores, and assignment completion rates.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-bullseye panel-card-icon"></i>
+            <h4>Goal Setting</h4>
+            <p>Set academic targets and track your progress toward them.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-file-alt panel-card-icon"></i>
+            <h4>Progress Reports</h4>
+            <p>Detailed insights into your academic strengths and areas for growth.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-award panel-card-icon"></i>
+            <h4>Skill Badges</h4>
+            <p>Earn recognition for mastering subjects and completing challenges.</p>
+          </div>
+        </div>
+      </div>
+      <div class="product-panel" id="panel-schedule">
+        <div class="panel-grid">
+          <div class="panel-card">
+            <i class="fas fa-calendar-week panel-card-icon"></i>
+            <h4>Weekly View</h4>
+            <p>See your entire week at a glance with color-coded classes.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-bell panel-card-icon"></i>
+            <h4>Smart Reminders</h4>
+            <p>Get notified before classes, deadlines, and study sessions.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-credit-card panel-card-icon"></i>
+            <h4>Exam Schedule</h4>
+            <p>Keep track of all your exam dates in one place.</p>
+          </div>
+          <div class="panel-card">
+            <i class="fas fa-download panel-card-icon"></i>
+            <h4>Export Options</h4>
+            <p>Download your schedule as PDF or image to share or print.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section ai-showcase" id="ai-assistant">
+  <div class="container">
+    <div class="ai-showcase-grid">
+      <div class="ai-showcase-content">
+        <span class="section-tag"><i class="fas fa-robot"></i> AI Study Assistant</span>
+        <h2>Your Personal AI Tutor, Available 24/7</h2>
+        <p>Meet your AI study companion. Get instant explanations, personalized study plans, assignment help, and academic guidance — just like having a tutor in your pocket.</p>
+        <ul class="ai-feature-list">
+          <li><i class="fas fa-check-circle"></i> Instant answers to academic questions</li>
+          <li><i class="fas fa-check-circle"></i> Personalized study schedules</li>
+          <li><i class="fas fa-check-circle"></i> Assignment hints and guidance</li>
+          <li><i class="fas fa-check-circle"></i> GPA improvement strategies</li>
+          <li><i class="fas fa-check-circle"></i> Multi-language support</li>
+        </ul>
+        <a href="register.html" class="btn btn-primary">Try AI Assistant <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="ai-showcase-visual">
+        <div class="ai-chat-mockup">
+          <div class="ai-chat-header">
+            <i class="fas fa-robot"></i> AI Study Assistant
+            <span class="ai-chat-status">Online</span>
+          </div>
+          <div class="ai-chat-messages">
+            <div class="ai-msg ai-msg-bot">
+              <div class="ai-msg-avatar"><i class="fas fa-robot"></i></div>
+              <div class="ai-msg-content">
+                <p>Hi! I'm your AI study assistant. How can I help you today?</p>
+              </div>
+            </div>
+            <div class="ai-msg ai-msg-user">
+              <div class="ai-msg-content">
+                <p>Can you help me understand binary search trees?</p>
+              </div>
+              <div class="ai-msg-avatar user"><i class="fas fa-user"></i></div>
+            </div>
+            <div class="ai-msg ai-msg-bot">
+              <div class="ai-msg-avatar"><i class="fas fa-robot"></i></div>
+              <div class="ai-msg-content">
+                <p>Of course! A binary search tree is a data structure where each node has at most two children...</p>
+                <div class="ai-msg-typing"><span></span><span></span><span></span></div>
+              </div>
+            </div>
+          </div>
+          <div class="ai-chat-input">
+            <input type="text" placeholder="Ask me anything about your studies..." disabled>
+            <button><i class="fas fa-paper-plane"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section journey-section" id="journey">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-route"></i> Your Journey</span>
+      <h2>From Registration to Academic Excellence</h2>
+      <p>Seven simple steps to transform your academic life with StudentVerseAI.</p>
+    </div>
+    <div class="journey-grid">
+      <div class="journey-card">
+        <div class="journey-step">01</div>
+        <div class="journey-icon"><i class="fas fa-user-plus"></i></div>
+        <h3>Create Account</h3>
+        <p>Sign up with your student email and set up your academic profile in seconds.</p>
+      </div>
+      <div class="journey-connector"><i class="fas fa-chevron-right"></i></div>
+      <div class="journey-card">
+        <div class="journey-step">02</div>
+        <div class="journey-icon"><i class="fas fa-book"></i></div>
+        <h3>Enroll in Courses</h3>
+        <p>Discover and join courses that match your field of study with AI recommendations.</p>
+      </div>
+      <div class="journey-connector"><i class="fas fa-chevron-right"></i></div>
+      <div class="journey-card">
+        <div class="journey-step">03</div>
+        <div class="journey-icon"><i class="fas fa-tachometer-alt"></i></div>
+        <h3>Access Dashboard</h3>
+        <p>Get a personalized overview of your courses, assignments, and academic progress.</p>
+      </div>
+      <div class="journey-connector"><i class="fas fa-chevron-right"></i></div>
+      <div class="journey-card">
+        <div class="journey-step">04</div>
+        <div class="journey-icon"><i class="fas fa-share-alt"></i></div>
+        <h3>Share & Learn</h3>
+        <p>Upload notes, take quizzes, and collaborate with peers in study groups.</p>
+      </div>
+      <div class="journey-connector"><i class="fas fa-chevron-right"></i></div>
+      <div class="journey-card">
+        <div class="journey-step">05</div>
+        <div class="journey-icon"><i class="fas fa-check-double"></i></div>
+        <h3>Track Progress</h3>
+        <p>Monitor assignments, GPA, and academic performance with visual analytics.</p>
+      </div>
+      <div class="journey-connector"><i class="fas fa-chevron-right"></i></div>
+      <div class="journey-card">
+        <div class="journey-step">06</div>
+        <div class="journey-icon"><i class="fas fa-trophy"></i></div>
+        <h3>Earn Achievements</h3>
+        <p>Unlock badges, build streaks, and climb the leaderboard as you learn.</p>
+      </div>
+      <div class="journey-connector"><i class="fas fa-chevron-right"></i></div>
+      <div class="journey-card">
+        <div class="journey-step">07</div>
+        <div class="journey-icon"><i class="fas fa-robot"></i></div>
+        <h3>AI-Powered Growth</h3>
+        <p>Receive personalized insights and recommendations to continuously improve.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section features-section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-star"></i> Features</span>
+      <h2>Designed for Every Aspect of Student Life</h2>
+      <p>Three pillars of academic success — learning, productivity, and performance — all in one platform.</p>
+    </div>
+
+    <div class="features-tabs">
+      <button class="features-tab active" data-feature="learning">
+        <i class="fas fa-graduation-cap"></i> Learning
+      </button>
+      <button class="features-tab" data-feature="productivity">
+        <i class="fas fa-clock"></i> Productivity
+      </button>
+      <button class="features-tab" data-feature="performance">
+        <i class="fas fa-chart-bar"></i> Performance
+      </button>
+    </div>
+
+    <div class="features-panel active" id="features-learning">
+      <div class="features-grid">
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#0F766E,#14B8A6)"></div>
+          <i class="fas fa-book-open"></i>
+          <h3>Smart Course Enrollment</h3>
+          <p>AI recommends courses based on your major, interests, and academic goals. Enroll with one click.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#7C3AED,#A855F7)"></div>
+          <i class="fas fa-sticky-note"></i>
+          <h3>Notes Sharing Hub</h3>
+          <p>Upload your notes, browse thousands from peers, and use AI-powered summaries for faster studying.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#2563EB,#3B82F6)"></div>
+          <i class="fas fa-question-circle"></i>
+          <h3>AI Quiz Center</h3>
+          <p>Generate practice quizzes from your notes, challenge friends, and track your improvement over time.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#DC2626,#EF4444)"></div>
+          <i class="fas fa-users"></i>
+          <h3>Study Groups</h3>
+          <p>Create or join study groups with real-time chat, file sharing, and collaborative whiteboards.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-panel" id="features-productivity">
+      <div class="features-grid">
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#D97706,#F59E0B)"></div>
+          <i class="fas fa-tasks"></i>
+          <h3>Assignment Manager</h3>
+          <p>Track all assignments with deadlines, priorities, status updates, and smart reminders.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#0F766E,#14B8A6)"></div>
+          <i class="fas fa-clock"></i>
+          <h3>Pomodoro Timer</h3>
+          <p>Built-in focus timer with customizable sessions, break reminders, and productivity tracking.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#7C3AED,#A855F7)"></div>
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Smart Timetable</h3>
+          <p>Visual weekly schedule with class times, study sessions, deadlines, and exam dates.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#2563EB,#3B82F6)"></div>
+          <i class="fas fa-bell"></i>
+          <h3>Smart Notifications</h3>
+          <p>Never miss a deadline with intelligent reminders for assignments, quizzes, and group activities.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-panel" id="features-performance">
+      <div class="features-grid">
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#DC2626,#EF4444)"></div>
+          <i class="fas fa-calculator"></i>
+          <h3>GPA Calculator</h3>
+          <p>Calculate semester and cumulative GPA with real-time updates and visual progress charts.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#D97706,#F59E0B)"></div>
+          <i class="fas fa-chart-line"></i>
+          <h3>Academic Analytics</h3>
+          <p>Deep insights into your performance trends, strengths, and areas needing improvement.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#0F766E,#14B8A6)"></div>
+          <i class="fas fa-bullseye"></i>
+          <h3>Goal Tracker</h3>
+          <p>Set semester goals, track progress, and get AI-powered suggestions to stay on target.</p>
+        </div>
+        <div class="feature-card-lg">
+          <div class="feature-card-bg" style="background:linear-gradient(135deg,#7C3AED,#A855F7)"></div>
+          <i class="fas fa-file-alt"></i>
+          <h3>Progress Reports</h3>
+          <p>Generate detailed reports on your academic journey with actionable improvement tips.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section achievements-section" id="achievements">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-trophy"></i> Achievements</span>
+      <h2>Turn Learning into a Game</h2>
+      <p>Stay motivated with achievement badges, study streaks, leaderboards, and rewards that celebrate your progress.</p>
+    </div>
+    <div class="achievements-grid">
+      <div class="achievement-card">
+        <div class="achievement-icon"><i class="fas fa-fire"></i></div>
+        <div class="achievement-info">
+          <h4>Study Streaks</h4>
+          <p>Maintain daily study streaks and unlock bonus rewards.</p>
+        </div>
+        <div class="achievement-progress">
+          <div class="achievement-bar" style="width:80%"></div>
+        </div>
+        <span class="achievement-count">12 Days</span>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon"><i class="fas fa-medal"></i></div>
+        <div class="achievement-info">
+          <h4>Skill Badges</h4>
+          <p>Earn badges for completing courses and mastering subjects.</p>
+        </div>
+        <div class="achievement-progress">
+          <div class="achievement-bar" style="width:60%"></div>
+        </div>
+        <span class="achievement-count">8 Badges</span>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon"><i class="fas fa-trophy"></i></div>
+        <div class="achievement-info">
+          <h4>Leaderboard</h4>
+          <p>Compete with peers and climb the rankings.</p>
+        </div>
+        <div class="achievement-progress">
+          <div class="achievement-bar" style="width:45%"></div>
+        </div>
+        <span class="achievement-count">#12 Rank</span>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon"><i class="fas fa-gem"></i></div>
+        <div class="achievement-info">
+          <h4>Points & Rewards</h4>
+          <p>Earn points for every achievement and redeem rewards.</p>
+        </div>
+        <div class="achievement-progress">
+          <div class="achievement-bar" style="width:70%"></div>
+        </div>
+        <span class="achievement-count">2,450 Pts</span>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon"><i class="fas fa-star"></i></div>
+        <div class="achievement-info">
+          <h4>Perfect Score</h4>
+          <p>Get 100% on any quiz to earn the perfect score badge.</p>
+        </div>
+        <div class="achievement-progress">
+          <div class="achievement-bar" style="width:30%"></div>
+        </div>
+        <span class="achievement-count">3 Perfect</span>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-icon"><i class="fas fa-users"></i></div>
+        <div class="achievement-info">
+          <h4>Collaborator</h4>
+          <p>Help peers by sharing notes and contributing to groups.</p>
+        </div>
+        <div class="achievement-progress">
+          <div class="achievement-bar" style="width:90%"></div>
+        </div>
+        <span class="achievement-count">15 Helps</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section community-section" id="community">
+  <div class="container">
+    <div class="community-grid">
+      <div class="community-content">
+        <span class="section-tag"><i class="fas fa-users"></i> Community</span>
+        <h2>Learn Together, Grow Together</h2>
+        <p>Join a vibrant community of students who share notes, collaborate on projects, and motivate each other to achieve academic excellence.</p>
+        <div class="community-stats">
+          <div class="community-stat">
+            <span class="community-stat-num">10,000+</span>
+            <span class="community-stat-label">Students</span>
+          </div>
+          <div class="community-stat">
+            <span class="community-stat-num">500+</span>
+            <span class="community-stat-label">Study Groups</span>
+          </div>
+          <div class="community-stat">
+            <span class="community-stat-num">50,000+</span>
+            <span class="community-stat-label">Notes Shared</span>
+          </div>
+        </div>
+        <a href="register.html" class="btn btn-primary">Join the Community <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="community-visual">
+        <div class="community-card-grid">
+          <div class="community-card">
+            <div class="community-card-header">
+              <div class="community-card-avatar" style="background:var(--primary)">S</div>
+              <div>
+                <strong>Sarah Johnson</strong>
+                <span>Shared 5 notes this week</span>
+              </div>
+            </div>
+            <p>"Found all my engineering notes here. This platform is amazing!"</p>
+          </div>
+          <div class="community-card">
+            <div class="community-card-header">
+              <div class="community-card-avatar" style="background:#7C3AED">M</div>
+              <div>
+                <strong>Michael Chen</strong>
+                <span>Helped 12 students this month</span>
+              </div>
+            </div>
+            <p>"Quiz center helped me ace my midterms. Highly recommend!"</p>
+          </div>
+          <div class="community-card">
+            <div class="community-card-header">
+              <div class="community-card-avatar" style="background:#DC2626">A</div>
+              <div>
+                <strong>Aisha Patel</strong>
+                <span>30-day study streak active</span>
+              </div>
+            </div>
+            <p>"Study groups keep me accountable. My GPA went from 3.2 to 3.8!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section dashboard-preview-section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-desktop"></i> Dashboard</span>
+      <h2>See What's Waiting Inside</h2>
+      <p>Your personalized command center for academic success.</p>
+    </div>
+    <div class="dashboard-preview">
+      <div class="dash-preview-sidebar">
+        <div class="dash-preview-logo">S</div>
+        <div class="dash-preview-nav-item active"><i class="fas fa-th-large"></i></div>
+        <div class="dash-preview-nav-item"><i class="fas fa-book"></i></div>
+        <div class="dash-preview-nav-item"><i class="fas fa-tasks"></i></div>
+        <div class="dash-preview-nav-item"><i class="fas fa-question-circle"></i></div>
+        <div class="dash-preview-nav-item"><i class="fas fa-robot"></i></div>
+        <div class="dash-preview-nav-item"><i class="fas fa-users"></i></div>
+        <div class="dash-preview-nav-item" style="margin-top:auto;"><i class="fas fa-cog"></i></div>
+      </div>
+      <div class="dash-preview-main">
+        <div class="dash-preview-topbar">
+          <div class="dash-preview-search"><i class="fas fa-search"></i> Search...</div>
+          <div class="dash-preview-actions">
+            <div class="dash-preview-bell"><i class="fas fa-bell"></i></div>
+            <div class="dash-preview-avatar">P</div>
+          </div>
+        </div>
+        <div class="dash-preview-content">
+          <div class="dash-preview-welcome">
+            <h3>Welcome back, <span>Princessjannat</span></h3>
+            <p>You have <strong>2 pending</strong> assignments and <strong>3 upcoming</strong> quizzes.</p>
+          </div>
+          <div class="dash-preview-cards">
+            <div class="dash-preview-card" style="border-left-color:var(--primary)">
+              <div class="dpc-icon"><i class="fas fa-book-open"></i></div>
+              <div class="dpc-info">
+                <span class="dpc-value">6</span>
+                <span class="dpc-label">Enrolled Courses</span>
+              </div>
+            </div>
+            <div class="dash-preview-card" style="border-left-color:#7C3AED">
+              <div class="dpc-icon"><i class="fas fa-tasks"></i></div>
+              <div class="dpc-info">
+                <span class="dpc-value">12</span>
+                <span class="dpc-label">Assignments</span>
+              </div>
+            </div>
+            <div class="dash-preview-card" style="border-left-color:#DC2626">
+              <div class="dpc-icon"><i class="fas fa-star"></i></div>
+              <div class="dpc-info">
+                <span class="dpc-value">3.95</span>
+                <span class="dpc-label">Current GPA</span>
+              </div>
+            </div>
+            <div class="dash-preview-card" style="border-left-color:#D97706">
+              <div class="dpc-icon"><i class="fas fa-fire"></i></div>
+              <div class="dpc-info">
+                <span class="dpc-value">12</span>
+                <span class="dpc-label">Day Streak</span>
+              </div>
+            </div>
+          </div>
+          <div class="dash-preview-chart">
+            <div class="dash-preview-chart-header">
+              <h4>GPA Progress</h4>
+              <span class="dash-trend up"><i class="fas fa-arrow-up"></i> +0.3 this sem</span>
+            </div>
+            <div class="dash-preview-chart-bars">
+              <div class="dash-bar" style="height:50%"><span>2.0</span></div>
+              <div class="dash-bar" style="height:65%"><span>2.6</span></div>
+              <div class="dash-bar" style="height:78%"><span>3.1</span></div>
+              <div class="dash-bar" style="height:90%"><span>3.6</span></div>
+              <div class="dash-bar active-bar" style="height:99%"><span>3.95</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-preview-cta">
+      <a href="register.html" class="btn btn-primary btn-lg">Launch Your Dashboard <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<section class="section faq-section" id="faq">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag"><i class="fas fa-question-circle"></i> FAQ</span>
+      <h2>Questions? We've Got Answers</h2>
+      <p>Everything you need to know about StudentVerseAI before getting started.</p>
+    </div>
+    <div class="faq-grid">
+      <div class="faq-item active">
+        <button class="faq-question">
+          <span><i class="fas fa-user-plus"></i> How do I get started?</span>
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Simply create a free account with your student email, complete your academic profile, and you'll have instant access to all features — course enrollment, notes sharing, AI assistant, GPA calculator, and more.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span><i class="fas fa-book"></i> How do I enroll in courses?</span>
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>After creating your account, browse available courses in your field. Our AI recommends the best courses for your major. Click "Enroll" and start accessing course materials immediately.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span><i class="fas fa-calculator"></i> How does GPA calculation work?</span>
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Our GPA calculator uses the standard 4.0 scale. Add your courses, credit hours, and grades to get instant semester and cumulative GPA with beautiful visual charts tracking your progress.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span><i class="fas fa-sticky-note"></i> Can I share notes with classmates?</span>
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! The Notes Sharing Hub lets you upload, browse, and download notes. Use AI summaries to digest content faster and earn points for contributing to the community.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span><i class="fas fa-robot"></i> How does the AI Assistant work?</span>
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Our AI Assistant uses advanced language models to answer academic questions, create personalized study plans, provide assignment guidance, and offer strategies to improve your GPA.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">
+          <span><i class="fas fa-dollar-sign"></i> Is StudentVerseAI free?</span>
+          <span class="faq-icon"><i class="fas fa-plus"></i></span>
+        </button>
+        <div class="faq-answer">
+          <p>Yes! We offer a generous free tier with access to core features including course enrollment, notes sharing, GPA calculator, study groups, and the AI assistant. Premium features are available at student-friendly prices.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-modern">
+  <div class="container">
+    <div class="cta-modern-content">
+      <div class="cta-badge">Join 10,000+ Students</div>
+      <h2>Ready to Transform Your Academic Journey?</h2>
+      <p>Join the next generation of students who are learning smarter, achieving more, and building their future with AI-powered tools.</p>
+      <div class="cta-buttons">
+        <a href="register.html" class="btn btn-primary btn-lg">Create Free Account <i class="fas fa-arrow-right"></i></a>
+        <a href="#product" class="btn btn-outline btn-lg">Explore Features</a>
+      </div>
+      <div class="cta-footer-text">
+        <i class="fas fa-check-circle"></i> No credit card required
+        <i class="fas fa-check-circle"></i> Free forever plan available
+        <i class="fas fa-check-circle"></i> Cancel anytime
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="logo"><i class="fas fa-graduation-cap"></i> StudentVerseAI</span>
+        <p>Empowering students worldwide with AI-powered tools for academic success, collaboration, and personal growth.</p>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#ai-assistant">AI Assistant</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+          <li><a href="#">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="#">Documentation</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#community">Community</a></li>
+          <li><a href="#">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Cookie Policy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Stay Updated</h4>
+        <form class="newsletter-form" id="newsletterForm">
+          <input type="email" placeholder="Enter your email" required>
+          <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+        </form>
+        <div class="social-links" style="margin-top:16px;">
+          <a href="https://github.com/Tahirainfo308-arch" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/frontend-developer-277151376" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/codewithnoor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://tiktok.com/@queenjan2050" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 StudentVerseAI. All rights reserved.</p>
+      <div class="social-links">
+        <a href="https://github.com/Tahirainfo308-arch" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/frontend-developer-277151376" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://www.instagram.com/codewithnoor" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

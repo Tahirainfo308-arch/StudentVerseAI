@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your StudentVerseAI account">
+  <title>Register - StudentVerseAI</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="auth.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<div class="auth-page">
+  <div class="auth-container" style="max-width:580px;">
+    <div class="auth-box">
+      <div class="auth-header">
+        <a href="index.html" class="auth-logo">
+          <span class="auth-logo-icon">S</span>
+          StudentVerseAI
+        </a>
+        <h1><i class="fas fa-user-plus"></i> Create Your Account</h1>
+        <p><i class="fas fa-rocket"></i> Join thousands of students learning smarter with AI</p>
+      </div>
+
+      <form id="registerForm" novalidate>
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fullName"><i class="fas fa-user"></i> Full Name</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-user"></i></span>
+              <input type="text" id="fullName" placeholder="John Doe" required>
+            </div>
+            <div class="error-text">Please enter your full name</div>
+          </div>
+
+          <div class="form-group">
+            <label for="studentId"><i class="fas fa-id-card"></i> Student ID</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-id-card"></i></span>
+              <input type="text" id="studentId" placeholder="STU-12345" required>
+            </div>
+            <div class="error-text">Please enter your student ID</div>
+          </div>
+
+          <div class="form-group">
+            <label for="regEmail"><i class="fas fa-envelope"></i> Email Address</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-envelope"></i></span>
+              <input type="email" id="regEmail" placeholder="student@university.edu" required>
+            </div>
+            <div class="error-text">Please enter a valid email address</div>
+          </div>
+
+          <div class="form-group">
+            <label for="university"><i class="fas fa-university"></i> University</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-university"></i></span>
+              <input type="text" id="university" placeholder="Your university name" required>
+            </div>
+            <div class="error-text">Please enter your university</div>
+          </div>
+
+          <div class="form-group">
+            <label for="department"><i class="fas fa-building"></i> Department</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-building"></i></span>
+              <input type="text" id="department" placeholder="Computer Science" required>
+            </div>
+            <div class="error-text">Please enter your department</div>
+          </div>
+
+          <div class="form-group">
+            <label for="regPassword"><i class="fas fa-lock"></i> Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-lock"></i></span>
+              <input type="password" id="regPassword" placeholder="Min. 6 characters" required minlength="6">
+              <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="far fa-eye"></i></button>
+            </div>
+            <div class="password-strength" id="passwordStrength">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="error-text">Password must be at least 6 characters</div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword"><i class="fas fa-check-circle"></i> Confirm Password</label>
+            <div class="input-wrapper">
+              <span class="input-icon"><i class="fas fa-check-circle"></i></span>
+              <input type="password" id="confirmPassword" placeholder="Re-enter password" required minlength="6">
+              <button type="button" class="toggle-password" aria-label="Toggle password visibility"><i class="far fa-eye"></i></button>
+            </div>
+            <div class="error-text">Passwords do not match</div>
+          </div>
+        </div>
+
+        <div class="form-group" style="grid-column:1/-1;">
+          <label>Select Your Courses <span class="required">*</span></label>
+          <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:6px;">Search and select the courses you're interested in.</p>
+          <div class="course-multiselect" id="courseMultiselect">
+            <div class="course-multiselect-tags" id="selectedTags"></div>
+            <input type="text" class="course-multiselect-input" id="courseSearchInput" placeholder="Type to search courses..." autocomplete="off">
+            <div class="course-multiselect-dropdown" id="courseDropdown"></div>
+          </div>
+          <div class="error-text" id="courseError">Please select at least one course</div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px;margin-top:8px;gap:8px;">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </form>
+
+      <div class="auth-divider"><i class="fas fa-ellipsis-h"></i> or continue with <i class="fas fa-ellipsis-h"></i></div>
+
+      <button class="btn-google">
+        <i class="fab fa-google"></i>
+        Continue with Google
+      </button>
+
+      <div class="auth-footer">
+        <p>Already have an account? <a href="login.html"><i class="fas fa-sign-in-alt"></i> Sign In</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="auth.js"></script>
+</body>
+</html>

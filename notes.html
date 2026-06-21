@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Notes - StudentVerseAI</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/notes.css">
+</head>
+<body>
+
+  <button class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon" id="themeIcon"></i>
+  </button>
+
+  <div class="language-selector">
+    <select id="langSelect">
+      <option value="en">English</option>
+      <option value="ur">اردو</option>
+      <option value="es">Español</option>
+      <option value="ar">العربية</option>
+    </select>
+  </div>
+
+  <div class="library-container fade-in">
+
+    <a href="dashboard.html" class="back-btn">
+      <i class="fas fa-arrow-left"></i> Back to Dashboard
+    </a>
+
+    <header class="top-section">
+      <div class="header-text">
+        <h1 data-i18n="title">Study Notes</h1>
+        <p data-i18n="subtitle">Upload and manage notes for your enrolled courses.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="primary-btn" id="openUploadModal" data-i18n="uploadBtn">
+          <i class="fas fa-plus"></i> Upload Notes
+        </button>
+        <button class="primary-btn" id="exportNotesBtn" style="background:var(--primary);">
+          <i class="fas fa-file-export"></i> Export All
+        </button>
+      </div>
+    </header>
+
+    <div class="categories-section" id="categoryContainer"></div>
+
+    <section class="search-filter-section">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" data-i18n="searchPlaceholder" placeholder="Search notes...">
+      </div>
+      <div class="filters">
+        <select id="filterSubject"></select>
+      </div>
+    </section>
+
+    <section class="notes-grid" id="notesGrid"></section>
+
+  </div>
+
+  <div class="modal-overlay" id="uploadModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 data-i18n="uploadModalTitle">Upload Notes</h2>
+        <button class="close-modal" id="closeModal"><i class="fas fa-times"></i></button>
+      </div>
+      <form id="uploadForm">
+        <div class="input-group">
+          <label data-i18n="notesTitle">Notes Title</label>
+          <input type="text" id="upTitle" data-i18n="notesTitlePlaceholder" placeholder="e.g. Chapter 1 Summary" required>
+        </div>
+        <div class="form-row">
+          <div class="input-group">
+            <label data-i18n="subject">Course</label>
+            <select id="upSubject" required></select>
+          </div>
+          <div class="input-group">
+            <label data-i18n="topic">Topic / Chapter</label>
+            <input type="text" id="upTopic" data-i18n="topicPlaceholder" placeholder="e.g. Chapter 1, Linear Equations, etc." required>
+          </div>
+        </div>
+        <div class="input-group">
+          <label data-i18n="description">Description</label>
+          <textarea id="upDesc" rows="3" data-i18n="descPlaceholder" placeholder="Brief details about these notes..." required></textarea>
+        </div>
+        <div class="file-upload" data-i18n="fileUpload">
+          <i class="fas fa-cloud-upload-alt file-icon"></i>
+          <p>Drag & drop or click to upload PDF/File</p>
+          <input type="file" id="upFile" accept=".pdf,.doc,.docx,.txt,.png,.jpg">
+        </div>
+        <button type="submit" class="primary-btn full-width" data-i18n="uploadNow">
+          <i class="fas fa-upload"></i> Upload Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="viewNoteModal">
+    <div class="modal-content view-note-modal">
+      <div class="modal-header">
+        <h2 id="viewNoteTitle">Note Title</h2>
+        <button class="close-modal" id="closeViewModal"><i class="fas fa-times"></i></button>
+      </div>
+      <div id="viewNoteBody" class="view-note-body"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">Action Successful!</div>
+
+  <script src="js/notes.js"></script>
+</body>
+</html>

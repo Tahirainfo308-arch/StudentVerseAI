@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Center - StudentVerseAI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/quiz.css">
+</head>
+<body>
+
+    <div class="container fade-in">
+
+        <div class="top-bar">
+            <a href="dashboard.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+            <div style="display:flex;align-items:center;gap:10px;">
+                <button class="btn btn-outline" id="openRequestModal"><i class="fas fa-paper-plane"></i> Request Quiz</button>
+                <label class="admin-toggle-label">
+                    <input type="checkbox" id="adminToggle">
+                    <span class="admin-toggle-slider"></span>
+                    <span class="admin-toggle-text">Admin</span>
+                </label>
+                <button class="theme-toggle" id="themeToggle" title="Toggle Theme">
+                    <i class="fas fa-sun" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- ===== VIEW 1: QUIZ DASHBOARD ===== -->
+        <div id="quizDashboardView" class="view-section active">
+
+            <header class="page-header">
+                <div>
+                    <h1>Quiz Center</h1>
+                    <p class="subtitle">Scheduled quizzes for your enrolled courses.</p>
+                </div>
+            </header>
+
+            <div class="categories-section" id="categoryContainer"></div>
+
+            <div class="quiz-grid" id="quizGrid"></div>
+
+            <!-- Admin Panel -->
+            <div id="adminPanel" class="admin-panel hidden">
+                <div class="section-header" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+                    <h2><i class="fas fa-tasks"></i> Admin Panel — Pending Requests</h2>
+                    <button class="btn btn-outline btn-sm" id="openCreateModal"><i class="fas fa-plus"></i> Create Directly</button>
+                </div>
+                <div id="requestList" class="request-list"></div>
+                <div id="requestEmpty" class="empty-state">
+                    <i class="fas fa-check-circle"></i>
+                    <p>No pending requests. All caught up!</p>
+                </div>
+            </div>
+
+            <!-- Course Results -->
+            <section class="results-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> Course Results</h2>
+                </div>
+                <div class="results-controls">
+                    <select id="resultsCourseSelect" class="results-select"></select>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Student</th>
+                                <th>Quiz</th>
+                                <th>Status</th>
+                                <th>Score</th>
+                                <th>%</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody"></tbody>
+                    </table>
+                </div>
+                <div id="resultsEmpty" class="empty-state">
+                    <i class="fas fa-chart-bar"></i>
+                    <p>Select a course to view results.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- ===== VIEW 2: ACTIVE QUIZ ===== -->
+        <div id="activeQuizView" class="view-section hidden">
+
+            <div class="quiz-header-card">
+                <div>
+                    <span class="badge" id="activeQuizSubject">JavaScript</span>
+                    <h3 id="questionCountText">Question 1 of 10</h3>
+                </div>
+                <div class="timer-box" id="timerBox">
+                    <i class="fas fa-stopwatch"></i> <span id="timeText">10:00</span>
+                </div>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="quizProgressBar" style="width:10%"></div>
+            </div>
+
+            <div class="question-card">
+                <h2 id="questionText">What does HTML stand for?</h2>
+                <div class="options-grid" id="optionsGrid"></div>
+            </div>
+
+            <div class="quiz-footer">
+                <button class="btn btn-outline" id="quitQuizBtn"><i class="fas fa-times"></i> Quit</button>
+                <button class="btn btn-primary" id="nextBtn">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- ===== VIEW 3: RESULT ===== -->
+        <div id="resultView" class="view-section hidden">
+            <div class="result-card">
+                <h1 class="result-title">Quiz Complete!</h1>
+                <p class="result-subtitle" id="resultMsg">Great effort! Here's how you did.</p>
+
+                <div class="score-circle-container">
+                    <svg viewBox="0 0 36 36" class="circular-chart">
+                        <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <path class="circle" id="scoreCircle" stroke-dasharray="0, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        <text x="18" y="20.35" class="percentage" id="scoreText">0%</text>
+                    </svg>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box stat-correct">
+                        <i class="fas fa-check-circle"></i>
+                        <h3 id="correctAnswers">0</h3>
+                        <p>Correct</p>
+                    </div>
+                    <div class="stat-box stat-wrong">
+                        <i class="fas fa-times-circle"></i>
+                        <h3 id="wrongAnswers">0</h3>
+                        <p>Wrong</p>
+                    </div>
+                    <div class="stat-box stat-score">
+                        <i class="fas fa-bullseye"></i>
+                        <h3 id="totalScore">0/0</h3>
+                        <p>Score</p>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="retakeBtn"><i class="fas fa-redo"></i> Back to Quizzes</button>
+                    <button class="btn btn-outline" id="goDashboardBtn"><i class="fas fa-arrow-left"></i> Dashboard</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== REQUEST QUIZ MODAL ===== -->
+    <div class="modal-overlay" id="requestQuizModal">
+        <div class="modal-content" style="max-width:480px;">
+            <div class="modal-header">
+                <h2>Request a Quiz</h2>
+                <button class="close-modal" id="closeRequestModal">&times;</button>
+            </div>
+            <form id="requestQuizForm">
+                <div class="input-group">
+                    <label>Quiz Title</label>
+                    <input type="text" id="requestTitle" placeholder="e.g. Midterm Review" required>
+                </div>
+                <div class="input-group">
+                    <label>Course</label>
+                    <select id="requestCourse" required></select>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Preferred Date</label>
+                        <input type="date" id="requestDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Preferred Time</label>
+                        <input type="time" id="requestTime" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Type</label>
+                    <select id="requestType">
+                        <option value="self">For Myself</option>
+                        <option value="group">For My Group / Class</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary full-width"><i class="fas fa-paper-plane"></i> Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== ADMIN CREATE QUIZ MODAL ===== -->
+    <div class="modal-overlay" id="createQuizModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shield-alt"></i> Admin: Create Quiz</h2>
+                <button class="close-modal" id="closeCreateModal">&times;</button>
+            </div>
+            <form id="createQuizForm">
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Quiz Title</label>
+                        <input type="text" id="adminQuizTitle" placeholder="e.g. Midterm Review" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Course</label>
+                        <select id="adminQuizCourse" required></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-group">
+                        <label>Scheduled Date</label>
+                        <input type="date" id="adminScheduledDate" required>
+                    </div>
+                    <div class="input-group">
+                        <label>Scheduled Time</label>
+                        <input type="time" id="adminScheduledTime" value="10:00" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label>Duration (minutes)</label>
+                    <input type="number" id="adminQuizDuration" value="15" min="1" max="120" required>
+                </div>
+
+                <div class="questions-section">
+                    <h3 style="font-size:1rem;margin-bottom:12px;">Questions</h3>
+                    <div id="adminQuestionList"></div>
+                    <button type="button" class="btn btn-outline btn-sm" id="addAdminQuestionBtn" style="margin-top:8px;"><i class="fas fa-plus"></i> Add Question</button>
+                </div>
+
+                <button type="submit" class="btn btn-primary full-width" style="margin-top:20px;">
+                    <i class="fas fa-calendar-check"></i> Schedule Quiz
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ===== START QUIZ CONFIRM MODAL ===== -->
+    <div class="modal-overlay" id="startQuizModal">
+        <div class="modal-content" style="max-width:400px;text-align:center;">
+            <div class="modal-header" style="border:none;padding-bottom:0;">
+                <h2 id="startQuizTitle">Quiz Title</h2>
+                <button class="close-modal" id="closeStartModal">&times;</button>
+            </div>
+            <div style="padding:20px 0;">
+                <p id="startQuizInfo" style="color:var(--text-muted);margin-bottom:16px;">5 questions &middot; 10 minutes</p>
+                <p style="color:var(--text-muted);font-size:0.85rem;">You cannot pause once started. Good luck!</p>
+            </div>
+            <div style="display:flex;gap:10px;justify-content:center;">
+                <button class="btn btn-outline" id="cancelStartBtn">Cancel</button>
+                <button class="btn btn-primary" id="confirmStartBtn"><i class="fas fa-play"></i> Start Quiz</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast">Action Successful!</div>
+
+    <script src="js/quiz.js"></script>
+</body>
+</html>
