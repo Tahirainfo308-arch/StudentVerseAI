@@ -530,13 +530,7 @@
     });
   }
 
-  const GROQ_API_KEY = (() => {
-    const stored = localStorage.getItem('GROQ_API_KEY');
-    if (stored) return stored;
-    const key = prompt('Enter your Groq API Key (gsk_...):');
-    if (key) localStorage.setItem('GROQ_API_KEY', key);
-    return key || '';
-  })();
+  const GROQ_API_KEY = (typeof CONFIG !== 'undefined' && CONFIG.GROQ_API_KEY) || localStorage.getItem('GROQ_API_KEY') || '';
   const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
   let groqLoading = false;
 
